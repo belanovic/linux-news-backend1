@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const http = require('http');
+const HOST_BACKEND = require('./hostBackend.js');
 const app = express();
 const server = http.createServer(app);
 const routerArticles = require('./routes/allArticles');
@@ -46,4 +47,4 @@ mongoose.connect('mongodb://localhost/news', { useNewUrlParser: true, useUnified
 
 const port = process.env.PORT || 4000;
 
-server.listen(port, '192.168.1.2', () => console.log(`Server is listening on port ${port}`));
+server.listen(port, HOST_BACKEND, () => console.log(`Server is listening on port ${port}`));
