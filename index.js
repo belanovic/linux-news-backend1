@@ -9,6 +9,9 @@ const article = require('./routes/oneArticle');
 const frontpageArticles = require('./routes/frontpageArticles')
 const articlePosition = require('./routes/articlePosition')
 
+const mongoAdress1 = `mongodb://localhost/news`;
+const mongoAdress2 = `mongomongodb+srv://goranbelanovic:1234@cluster0.xneom.mongodb.net/news?retryWrites=true&w=majority`;
+
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -41,7 +44,7 @@ app.use('/', articlePosition);
 
 // Add headers
 
-mongoose.connect('mongodb://localhost/news', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoAdress2, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to the database'))
     .catch(err => console.log(err))
 
