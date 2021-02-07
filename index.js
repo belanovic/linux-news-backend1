@@ -8,6 +8,7 @@ const routerArticles = require('./routes/allArticles');
 const article = require('./routes/oneArticle');
 const frontpageArticles = require('./routes/frontpageArticles')
 const articlePosition = require('./routes/articlePosition')
+const proba = require('./routes/proba')
 
 const mongoAdress1 = `mongodb://localhost/news`;
 const mongoAdress2 = `mongomongodb+srv://goranbelanovic:1234@cluster0.xneom.mongodb.net/news?retryWrites=true&w=majority`;
@@ -41,6 +42,7 @@ app.use('/', routerArticles);
 app.use('/', article);
 app.use('/', frontpageArticles);
 app.use('/', articlePosition);
+app.use('/', proba);
 
 // Add headers
 
