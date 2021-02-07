@@ -50,4 +50,4 @@ mongoose.connect(mongoAdress2, { useNewUrlParser: true, useUnifiedTopology: true
 
 const port = process.env.PORT || 4000;
 
-server.listen(port, HOST_BACKEND, () => console.log(`Server is listening on port ${port}`));
+server.listen(port, '0.0.0.0', () => console.log(`Server is listening on port ${port}`));
