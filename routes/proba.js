@@ -4,7 +4,7 @@ const router = express.Router();
 router.get('/proba', async (req, res) => {
     try {
         const odgovor = {
-            poruka: 'Ovo je poruka'
+            poruka: 'Ovo je druga poruka'
         }
         res.status(200).json(odgovor);
     }
