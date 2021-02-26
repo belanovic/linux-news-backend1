@@ -16,6 +16,7 @@ router.get('/oneArticle/:id', async (req, res) => {
 router.post('/oneArticle', async (req, res) => {
     const oneArticle = new Article({
         category: req.body.category,
+        published: req.body.published,
         position: req.body.position,
         title: req.body.title,
         subtitle: req.body.subtitle,
