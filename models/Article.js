@@ -7,6 +7,10 @@ const articleSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    published: {
+        type: Boolean,
+        required: true
+    },
     position: {
         type: Number,
         required: true

@@ -7,7 +7,8 @@ const server = http.createServer(app);
 const routerArticles = require('./routes/allArticles');
 const article = require('./routes/oneArticle');
 const frontpageArticles = require('./routes/frontpageArticles')
-const articlePosition = require('./routes/articlePosition')
+const articlePosition = require('./routes/articlePosition');
+const newsByCategory = require('./routes/newsByCategory');
 const proba = require('./routes/proba')
 
 const mongoAdress1 = `mongodb://localhost/news`;
@@ -42,6 +43,7 @@ app.use('/', routerArticles);
 app.use('/', article);
 app.use('/', frontpageArticles);
 app.use('/', articlePosition);
+app.use('/', newsByCategory);
 app.use('/', proba);
 
 // Add headers

@@ -2,14 +2,13 @@ const express = require('express');
 const router = express.Router();
 const Article = require('../models/Article');
 
-router.get('/frontpageArticles', async (req, res) => {
+router.get('/category/:category', async (req, res) => {
     try {
         const articles = await Article
             .find({
-                position: {$gt: 0, $lt: 21},
-                published: true
+                category: req.params.category
             })
-            .sort({dateUpdated: -1}) 
+            .sort({dateUpdated: -1})
         res.status(200).json(articles);
     }
     catch(err) {
