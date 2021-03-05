@@ -47,7 +47,8 @@ const articleSchema = new mongoose.Schema({
     },
     datePublished: {
         type: Date, 
-        default: Date.now()
+        default: Date.now(), 
+        required: true
     }
 })
 
