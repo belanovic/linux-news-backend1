@@ -29,7 +29,7 @@ router.post('/oneArticle', async (req, res) => {
     })
     try{
         const savedArticle = await oneArticle.save();
-        res.send('Succesfully deployed article', savedArticle)
+        res.send(`Succesfully deployed article ${savedArticle}`)
     }catch(err) {
         res.send(err);
     }
