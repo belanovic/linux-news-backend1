@@ -44,6 +44,11 @@ const articleSchema = new mongoose.Schema({
         type: Date,
         default: Date.now(),
         required: true
+    },
+    datePublished: {
+        type: Date, 
+        default: Date.now(), 
+        required: true
     }
 })
 

@@ -24,11 +24,12 @@ router.post('/oneArticle', async (req, res) => {
         imgURL: req.body.imgURL,
         imgName: req.body.imgName,
         dateCreated: req.body.dateCreated,
-        dateUpdated: req.body.dateUpdated
+        dateUpdated: req.body.dateUpdated,
+        datePublished: req.body.datePublished
     })
     try{
         const savedArticle = await oneArticle.save();
-        res.send(savedArticle)
+        res.send(`Succesfully deployed article ${savedArticle}`)
     }catch(err) {
         res.send(err);
     }
