@@ -27,6 +27,9 @@ const articleSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    paragraphs: {
+        required: true
+    },
     imgURL: {
         type: String,
         required: true
