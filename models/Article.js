@@ -28,6 +28,7 @@ const articleSchema = new mongoose.Schema({
         required: true
     },
     paragraphs: {
+        type: Object,
         required: true
     },
     imgURL: {
