@@ -6,7 +6,10 @@ router.put('/publishArticle/:id', async (req, res) => {
     try {
         const article = await Article.findByIdAndUpdate(
             req.params.id, 
-            {published: req.body.published, datePublished: req.body.datePublished},
+            {published: req.body.published, 
+                datePublished: req.body.datePublished, 
+                dateUpdated: req.body.dateUpdated
+            },
             {new: true}
         );
         res.status(200).send(article);
