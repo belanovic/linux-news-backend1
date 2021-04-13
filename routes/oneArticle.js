@@ -30,9 +30,9 @@ router.post('/oneArticle', async (req, res) => {
         datePublished: req.body.datePublished
     })
     try{
-        console.log('evo me opet')
         const savedArticle = await oneArticle.save();
         res.send(`Succesfully deployed article ${savedArticle}`)
+        console.log('evo me opett')
     }catch(err) {
         res.send(err);
     }
