@@ -53,7 +53,7 @@ const articleSchema = new mongoose.Schema({
         default: Date.now(), 
         required: true
     }, 
-    imgDescrption: {
+    imgDescription: {
         type: String
     },
     source: {
