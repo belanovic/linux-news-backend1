@@ -52,7 +52,17 @@ const articleSchema = new mongoose.Schema({
         type: Date, 
         default: Date.now(), 
         required: true
+    }, 
+    imgDescrption: {
+        type: String
+    },
+    source: {
+        type: String
+    },
+    author: {
+        type: String
     }
+
 })
 
 const Article = mongoose.model('Article', articleSchema);

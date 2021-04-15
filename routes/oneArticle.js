@@ -27,7 +27,10 @@ router.post('/oneArticle', async (req, res) => {
         imgName: req.body.imgName,
         dateCreated: req.body.dateCreated,
         dateUpdated: req.body.dateUpdated,
-        datePublished: req.body.datePublished
+        datePublished: req.body.datePublished, 
+        imgDescription: req.body.imgDescription, 
+        source: req.body.source,
+        author: req.body.author
     })
     try{
         const savedArticle = await oneArticle.save();
