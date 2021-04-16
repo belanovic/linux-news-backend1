@@ -38,6 +38,14 @@ const articleSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    videoURL: {
+        type: String,
+        required: true
+    },
+    videoName: {
+        type: String,
+        required: true
+    },
     dateCreated: {
         type: Date,
         default: Date.now(),
@@ -53,7 +61,7 @@ const articleSchema = new mongoose.Schema({
         default: Date.now(), 
         required: true
     }, 
-    imgDescription: {
+    videoDescription: {
         type: String
     },
     source: {

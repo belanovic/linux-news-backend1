@@ -25,10 +25,13 @@ router.post('/oneArticle', async (req, res) => {
         paragraphs: req.body.paragraphs,
         imgURL: req.body.imgURL,
         imgName: req.body.imgName,
+        videoURL: req.body.videoURL,
+        videoName: req.body.videoName,
         dateCreated: req.body.dateCreated,
         dateUpdated: req.body.dateUpdated,
         datePublished: req.body.datePublished, 
         imgDescription: req.body.imgDescription, 
+        videoDescription: req.body.videoDescription, 
         source: req.body.source,
         author: req.body.author
     })
