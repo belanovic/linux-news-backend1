@@ -40,11 +40,11 @@ const articleSchema = new mongoose.Schema({
     },
     videoURL: {
         type: String,
-        required: true
+        default: 'none'
     },
     videoName: {
-        type: String,
-        required: true
+        type: String, 
+        default: 'none'
     },
     dateCreated: {
         type: Date,
@@ -62,7 +62,8 @@ const articleSchema = new mongoose.Schema({
         required: true
     }, 
     videoDescription: {
-        type: String
+        type: String,
+        default: 'none'
     },
     source: {
         type: String
