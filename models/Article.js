@@ -70,6 +70,10 @@ const articleSchema = new mongoose.Schema({
     },
     author: {
         type: String
+    }, 
+    tags: {
+        type: Array, 
+        default: ['vesti']
     }
 
 })
