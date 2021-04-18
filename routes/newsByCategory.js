@@ -8,7 +8,7 @@ router.get('/category/:category', async (req, res) => {
             .find({
                 category: req.params.category
             })
-            .sort({dateUpdated: -1})
+            .sort({datePublished: -1})
         res.status(200).json(articles);
     }
     catch(err) {
