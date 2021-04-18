@@ -66,12 +66,10 @@ const articleSchema = new mongoose.Schema({
         default: 'none'
     },
     source: {
-        type: String, 
-        default: 'none'
+        type: String
     },
     author: {
-        type: String,
-        default: 'none'
+        type: String
     }
 
 })
