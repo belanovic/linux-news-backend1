@@ -73,7 +73,7 @@ const articleSchema = new mongoose.Schema({
     }, 
     tagsArr: {
         type: Array,
-        default: 'vesti'
+        default: ['vesti']
     }
 
 })
