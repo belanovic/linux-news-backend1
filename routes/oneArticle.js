@@ -33,7 +33,8 @@ router.post('/oneArticle', async (req, res) => {
         imgDescription: req.body.imgDescription, 
         videoDescription: req.body.videoDescription, 
         source: req.body.source,
-        author: req.body.author
+        author: req.body.author,
+        tagsArr: req.body.tagsArr
     })
     try{
         const savedArticle = await oneArticle.save();

@@ -71,7 +71,7 @@ const articleSchema = new mongoose.Schema({
     author: {
         type: String
     }, 
-    tags: {
+    tagsArr: {
         type: Array
     }
 
