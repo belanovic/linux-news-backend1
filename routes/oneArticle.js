@@ -14,7 +14,6 @@ router.get('/oneArticle/:id', async (req, res) => {
 })
 
 router.post('/oneArticle', async (req, res) => {
-    console.log('evo me');
     const oneArticle = new Article({
         category: req.body.category,
         published: req.body.published,
@@ -39,7 +38,6 @@ router.post('/oneArticle', async (req, res) => {
     try{
         const savedArticle = await oneArticle.save();
         res.send(`Succesfully deployed article ${savedArticle}`)
-        console.log('evo me opett')
     }catch(err) {
         res.send(err);
     }
