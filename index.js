@@ -6,12 +6,12 @@ const app = express();
 const server = http.createServer(app);
 const routerArticles = require('./routes/allArticles');
 const article = require('./routes/oneArticle');
-const frontpageArticles = require('./routes/frontpageArticles')
+const frontpageArticles = require('./routes/frontpageArticles');
 const articlePosition = require('./routes/articlePosition');
-const newsByCategory = require('./routes/newsByCategory');;
+const newsByCategory = require('./routes/newsByCategory');
 const publishArticle = require('./routes/publishArticle');
 const proba = require('./routes/proba');
-const oneUserFE = require('./router/oneUserFE');
+const oneUserFE = require('./routes/oneUserFE');
 
 const mongoAdress1 = `mongodb://localhost/news`;
 const mongoAdress2 = `mongomongodb+srv://goranbelanovic:1234@cluster0.xneom.mongodb.net/news?retryWrites=true&w=majority`;
