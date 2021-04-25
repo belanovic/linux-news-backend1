@@ -12,7 +12,7 @@ router.post('/oneUserFE', async (req, res) => {
             email: req.body.email
         })
         const savedOneUser = await UserFrontend.save();
-        res.status(200).send(savedOneUser)
+        res.status(200).send('evo me')
     }
     catch(err){
         res.send(err);
