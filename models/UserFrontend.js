@@ -5,7 +5,7 @@ const userFrontendSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true,
-        default: 'firsName'
+        default: 'firstName'
     },
     lastName: {
         type: String,
