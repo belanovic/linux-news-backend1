@@ -13,17 +13,20 @@ router.post('/oneUserFE', async (req, res) => {
     })
     try {
         const savedOneUser = await oneUser.save();
-        console.log('pre slanja odgovora')
-        res.send(savedOneUser);
+        let msg = ['success', savedOneUser]
+        res.json(msg);
     }
     catch (err) {
-        let msg = {
-            greska: err
-        }
+        let msg = ['error', err]
+        res.json(msg);
+        /* let msg = [
+            {oneUser: ''},
+            {greska: err}
+        ]
         if(err.code === 11000) {
             msg.greska = `${JSON.stringify(err.keyPattern)} ${JSON.stringify(err.keyValue)} already exists`;
         }
-        res.send(msg);
+        res.send(msg); */
     }
 })
 
