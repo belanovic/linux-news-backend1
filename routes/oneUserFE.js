@@ -13,7 +13,7 @@ router.post('/oneUserFE', async (req, res) => {
         })
         const savedOneUser = await oneUser.save();
         console.log('pre slanja odgovora')
-        res.status(200).json(savedOneUser);
+        res.send(savedOneUser);
     }
     catch(err){
         res.send(err);
