@@ -2,9 +2,17 @@ const express = require('express');
 const router = express.Router();
 const UserFrontend = require('../models/UserFrontend');
 
-router.get('/oneUserFE', async (req, res) => {
+router.post('/oneUserFE', async (req, res) => {
     try {
-        res.status(200).send('Ovo su podaci jednog korisnika')
+        const oneUser = new UserFrontend({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email
+        })
+        const savedOneUser = await UserFrontend.save();
+        res.status(200).send(savedOneUser)
     }
     catch(err){
         res.send(err);
