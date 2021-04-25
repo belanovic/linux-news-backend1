@@ -17,9 +17,11 @@ router.post('/oneUserFE', async (req, res) => {
         res.send(savedOneUser);
     }
     catch (err) {
-        let msg = err;
+        let msg = {
+            greska: err
+        }
         if(err.code === 11000) {
-            msg = `${err.keyValue[0]} ${err.keyValue[1]} already exists`;
+            msg.greska = `${err.keyValue[0]} ${err.keyValue[1]} already exists`;
         }
         res.send(msg);
     }
