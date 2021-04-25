@@ -16,7 +16,7 @@ router.post('/oneUserFE', async (req, res) => {
         res.status(200).send('evo me');
     }
     catch(err){
-        res.send(err);
+        res.send(err.errors.message);
     }
 })
 
