@@ -17,12 +17,12 @@ router.post('/oneUserFE', async (req, res) => {
         res.send(savedOneUser);
     }
     catch (err) {
-       /*  let msg = {
+        let msg = {
             greska: err
         }
         if(err.code === 11000) {
-            msg.greska = `${err.driver.keyValue[0]} ${err.driver.keyValue[1]} already exists`;
-        } */
+            msg.greska = `${err.keyPattern} ${err.keyValue} already exists`;
+        }
         res.send(err);
     }
 })
