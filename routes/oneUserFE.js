@@ -3,7 +3,8 @@ const router = express.Router();
 const UserFrontend = require('../models/UserFrontend');
 
 router.post('/oneUserFE', async (req, res) => {
-    console.log('evo me')
+    console.log('evo me');
+    console.log(req.body.firstName, req.body.lastName, req.body.email)
     const oneUser = new UserFrontend({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
