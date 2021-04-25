@@ -3,7 +3,7 @@ const router = express.Router();
 const UserFrontend = require('../models/UserFrontend');
 
 router.post('/oneUserFE', async (req, res) => {
-    
+
     const oneUser = new UserFrontend({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -17,7 +17,11 @@ router.post('/oneUserFE', async (req, res) => {
         res.send(savedOneUser);
     }
     catch (err) {
-        res.send(err);
+        let msg = err;
+        if(err.code === 11000) {
+            msg = `${err.keyValue[0]} ${err.keyValue[1]} already exists`;
+        }
+        res.send(msg);
     }
 })
 
