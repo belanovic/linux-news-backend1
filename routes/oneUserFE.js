@@ -21,7 +21,7 @@ router.post('/oneUserFE', async (req, res) => {
             greska: err
         }
         if(err.code === 11000) {
-            msg.greska = `${err.keyPattern} ${err.keyValue} already exists`;
+            msg.greska = `${JSON.stringify(err.keyPattern)} ${JSON.stringify(err.keyValue)} already exists`;
         }
         res.send(msg);
     }
