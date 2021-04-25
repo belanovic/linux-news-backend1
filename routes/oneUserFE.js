@@ -11,7 +11,7 @@ router.post('/oneUserFE', async (req, res) => {
             password: req.body.password,
             email: req.body.email
         })
-        const savedOneUser = await UserFrontend.save();
+        const savedOneUser = await oneUser.save();
         console.log('pre slanja odgovora')
         res.status(200).send('evo me');
     }
