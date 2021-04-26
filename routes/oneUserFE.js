@@ -1,9 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const {UserFrontend, } = require('../models/UserFrontend');
+const {UserFrontend, validateUser} = require('../models/UserFrontend');
 
 router.post('/oneUserFE', async (req, res) => {
 
+    const {error} = validateUser(req.body);
+    if (error) res.status(400).send(error.details[0].message);
+
+    const result = await UserFrontend.findOne({email: req.body.email});
+
+    if (result) res.status(400).send(`User with email address ${req.body.email} is already registered`)
+    
     const oneUser = new UserFrontend({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
