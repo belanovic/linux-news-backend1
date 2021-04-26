@@ -4,28 +4,33 @@ const Joi = require('joi');
 const userFrontendSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        required: true,
-        default: 'firstName'
+        minLength: 3,
+        maxLength: 50,
+        required: true
     },
     lastName: {
         type: String,
-        required: true,
-        default: "lastName"
+        minLength: 3,
+        maxLength: 50,
+        required: true
     },
     username: {
         type: String,
-        required: true,
-        default: 'username'
+        minLength: 3,
+        maxLength: 50,
+        required: true
     },
     password: {
         type: String,
-        required: true,
-        default: 'password'
+        minLength: 3,
+        maxLength: 255,
+        required: true
     },
     email: {
         type: String,
-        required: true,
-        default: 'email adress'
+        minLength: 3,
+        maxLength: 60,
+        required: true
     }
 })
 
