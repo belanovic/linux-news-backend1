@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const {UserFrontend, validateUser} = require('../models/UserFrontend');
+/* const Joi = require('joi'); */
 
 router.post('/oneUserFE', async (req, res) => {
 
-    const {error} = validateUser(req.body);
-    if (error) res.status(400).send(error.details[0].message);
+  /*   const {error} = validateUser(req.body);
+    if (error) res.status(400).send(error.details[0].message); */
 
     const result = await UserFrontend.findOne({email: req.body.email});
 
