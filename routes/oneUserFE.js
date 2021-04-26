@@ -21,7 +21,7 @@ router.post('/oneUserFE', async (req, res) => {
     })
     try {
         const savedOneUser = await oneUser.save();
-        let msg = ['success', _.pick(savedOneUser, ['username', 'email'])]
+        let msg = ['success', savedOneUser]
         res.json(msg);
     }
     catch (err) {
