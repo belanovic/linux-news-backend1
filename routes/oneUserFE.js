@@ -6,7 +6,7 @@ const {UserFrontend, validateUser} = require('../models/UserFrontend');
 router.post('/oneUserFE', async (req, res) => {
 
     const {error} = validateUser(req.body);
-    if (error) res.status(400).send(error.details[0].message);
+    if (error) res.status(400).send({validate_error: error.details[0].message});
 
     const result = await UserFrontend.findOne({email: req.body.email});
 
