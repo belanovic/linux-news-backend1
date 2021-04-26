@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {UserFrontend, validateUser} = require('../models/UserFrontend');
-/* const Joi = require('joi'); */
+const _ = require('lodash');
 
 router.post('/oneUserFE', async (req, res) => {
 
@@ -21,7 +21,7 @@ router.post('/oneUserFE', async (req, res) => {
     })
     try {
         const savedOneUser = await oneUser.save();
-        let msg = ['success', savedOneUser]
+        let msg = ['success', _.pick(savedOneUser, ['username', 'email'])]
         res.json(msg);
     }
     catch (err) {
