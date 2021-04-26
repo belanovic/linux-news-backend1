@@ -22,8 +22,8 @@ router.post('/authOneUserFE', async (req, res) => {
     const token = jwt.sign({_id: resultUsername._id}, 'jwtPrivateKey');
 
     try {
-        let msg = ['logged in', true]
-        res.send(token);
+        let msg = ['logged in', token]
+        res.send(msg);
     }
     catch (err) {
         let msg = ['error', err]
