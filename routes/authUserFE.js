@@ -23,7 +23,7 @@ router.post('/authOneUserFE', async (req, res) => {
 
     try {
         let msg = ['logged in', true]
-        res.send(msg);
+        res.send(token);
     }
     catch (err) {
         let msg = ['error', err]
