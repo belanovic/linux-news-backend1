@@ -23,7 +23,7 @@ const userFrontendSchema = new mongoose.Schema({
     password: {
         type: String,
         minLength: 3,
-        maxLength: 255,
+        maxLength: 1024,
         required: true
     },
     email: {
