@@ -12,6 +12,7 @@ const newsByCategory = require('./routes/newsByCategory');
 const publishArticle = require('./routes/publishArticle');
 const proba = require('./routes/proba');
 const oneUserFE = require('./routes/oneUserFE');
+const authUserFE = require('./routes/authUserFE');
 
 const mongoAdress1 = `mongodb://localhost/news`;
 const mongoAdress2 = `mongomongodb+srv://goranbelanovic:1234@cluster0.xneom.mongodb.net/news?retryWrites=true&w=majority`;
@@ -49,6 +50,7 @@ app.use('/', newsByCategory);
 app.use('/', proba);
 app.use('/', publishArticle);
 app.use('/', oneUserFE);
+app.use('/', authUserFE);
 
 // Add headers
 

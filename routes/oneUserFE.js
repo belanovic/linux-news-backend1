@@ -1,17 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const {UserFrontend, validateUser} = require('../models/UserFrontend');
+const { UserFrontend, validateUser } = require('../models/UserFrontend');
 const _ = require('lodash');
+const bcrypt = require('bcrypt');
 
 router.post('/oneUserFE', async (req, res) => {
 
-    const {error} = validateUser(req.body);
-    if (error) res.status(400).send({validate_error: error.details[0].message});
+    const { error } = validateUser(req.body);
+    if (error) res.status(400).send({ validate_error: error.details[0].message });
 
-    const result = await UserFrontend.findOne({email: req.body.email});
+    const result = await UserFrontend.findOne({ email: req.body.email });
 
-    if (result) res.status(400).send({error_msg: `User with email address ${req.body.email} is already registered`})
-    
+    if (result) res.status(400).send({ error_msg: `User with email address ${req.body.email} is already registered` })
+
+
+
+    async function hash(password) {
+        const salt = await bcrypt.genSalt(10);
+        const hashed = await bcrypt.hash(password, salt)
+        console.log(hashed);
+        return hashed
+    }
+    hash('1234');
+
     const oneUser = new UserFrontend({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
