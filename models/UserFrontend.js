@@ -37,16 +37,22 @@ const userFrontendSchema = new mongoose.Schema({
 const UserFrontend = mongoose.model('UserFrontend', userFrontendSchema);
 
 function validateUser(user) {
-    const schema = {
+    const schema = Joi.object( {
         firstName: Joi.string().min(3).max(50).required(),
         lastName:  Joi.string().min(3).max(50).required(),
         username:  Joi.string().min(3).max(50).required(),
         password:  Joi.string().min(6).max(255).required(),
         email:  Joi.string().min(3).max(60).email().required()
-    }
-    console.log('validacija')
-    return Joi.validate(user, schema);
+    })
+    return schema.validate(user);
 }
 
 module.exports.UserFrontend = UserFrontend;
 module.exports.validateUser = validateUser;
+
+/* const schema = Joi.object({ name: Joi.string() .min(6) .required(),
+    email: Joi.string() .min(6) .required() .email(),
+    password: Joi.string() .min(6) .required() });
+    
+    const validation = schema.validate(req.body);
+    res.send(validation); */
