@@ -44,6 +44,7 @@ function validateUser(user) {
         password:  Joi.string().min(6).max(255).required(),
         email:  Joi.string().min(3).max(60).email().required()
     }
+    console.log('validacija')
     return Joi.validate(user, schema);
 }
 
