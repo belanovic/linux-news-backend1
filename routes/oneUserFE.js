@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 router.post('/oneUserFE', async (req, res) => {
 
     async function hash(password) {
-            const salt = await bcrypt.genSalt(10);
+            const salt = await bcrypt.genSalt(5);
             const hashed = await bcrypt.hash(password, salt)
             console.log(hashed);
             return hashed
