@@ -10,7 +10,7 @@ router.post('/oneUserFE', async (req, res) => {
 
     const result = await UserFrontend.findOne({email: req.body.email});
 
-    if (result) res.status(400).send(`User with email address ${req.body.email} is already registered`)
+    if (result) res.status(400).send({error_msg: `User with email address ${req.body.email} is already registered`})
     
     const oneUser = new UserFrontend({
         firstName: req.body.firstName,
