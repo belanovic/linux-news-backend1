@@ -20,13 +20,13 @@ router.post('/oneUserFE', async (req, res) => {
 
     if (result) res.status(400).send({ error_msg: `User with email address ${req.body.email} is already registered` })
 
-    
+    const hashedPassword = await hash(req.body.password);
 
     const oneUser = new UserFrontend({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         username: req.body.username,
-        password: hash(req.body.password),
+        password: hashedPassword,
         email: req.body.email
     })
     try {
