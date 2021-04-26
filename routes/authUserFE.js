@@ -16,7 +16,7 @@ router.post('/authOneUserFE', async (req, res) => {
     if (!result2) res.status(400).send({ validate_error: `Invalid username or password`}); */
 
     const resultPassword = await bcrypt.compare(req.body.password, resultUsername.password);
-    if (!resultPassword) res.status(400).send({ validate_error: `Invalid username or password`});
+    if (!resultPassword) res.status(400).send({ validate_error: `Invalid password`});
 
     try {
         let msg = ['logged in', true]
