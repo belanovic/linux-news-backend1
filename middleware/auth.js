@@ -10,7 +10,7 @@ function auth(req, res, next) {
         const decodedPayload = jwt.verify(token, config.get('jwtPrivateKey'));
         req.user = decodedPayload;
         next();
-    } catch(err) {
+    } catch(err){
         res.status(400).send({token_error: 'Invalid token'});
     }
 }
