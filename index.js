@@ -13,6 +13,12 @@ const publishArticle = require('./routes/publishArticle');
 const proba = require('./routes/proba');
 const oneUserFE = require('./routes/oneUserFE');
 const authUserFE = require('./routes/authUserFE');
+const config = require('config');
+
+if(!config.get('jwtPrivateKey')) {
+    console.error('FATAL ERROR: jwtPrivateKey is not defined');
+    process.exit(1);
+}
 
 const mongoAdress1 = `mongodb://localhost/news`;
 const mongoAdress2 = `mongomongodb+srv://goranbelanovic:1234@cluster0.xneom.mongodb.net/news?retryWrites=true&w=majority`;

@@ -4,6 +4,7 @@ const { UserFrontend, validateUserAuth } = require('../models/UserFrontend');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const config = require('config');
 
 router.post('/authOneUserFE', async (req, res) => {
 
@@ -19,7 +20,7 @@ router.post('/authOneUserFE', async (req, res) => {
     const resultPassword = await bcrypt.compare(req.body.password, resultUsername.password);
     if (!resultPassword) res.status(400).send({ validate_error: `Invalid username or password`});
 
-    const token = jwt.sign({_id: resultUsername._id}, 'jwtPrivateKey');
+    const token = jwt.sign({_id: resultUsername._id}, config.get('jwtPrivateKey'));
 
     try {
         let msg = ['logged in', token]
