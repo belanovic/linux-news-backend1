@@ -3,8 +3,6 @@ const router = express.Router();
 const { UserFrontend, validateUser } = require('../models/UserFrontend');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const config = require('config');
 
 router.post('/oneUserFE', async (req, res) => {
 
@@ -31,11 +29,10 @@ router.post('/oneUserFE', async (req, res) => {
         password: hashedPassword,
         email: req.body.email
     })
-    
 
     try {
         const savedOneUser = await oneUser.save();
-        const token = jwt.sign({_id: savedOneUser._id}, config.get('jwtPrivateKey'));
+        const token = oneUser.generateToken();
         let msg = ['success', savedOneUser]
         res.header('x-auth-token', token).json(msg);
     }
