@@ -6,14 +6,14 @@ function auth(req, res, next) {
     console.log('ovo je pre procitanog hedera');
     console.log('ovo je procitan heder' + req.header('x-auth-token'));
     const token = req.header('x-auth-token');
-    if (!token) return res.status(401).send({token_error: 'Access denied. No token provided'});
+    if (!token) return res.status(401).json({token_error: 'Access denied. No token provided'});
 
     try {
         const decodedPayload = jwt.verify(token, config.get('jwtPrivateKey'));
         req.user = decodedPayload;
         next();
     } catch(err){
-        res.status(400).send({token_error: 'Invalid token'});
+        res.status(400).json({token_error: 'Invalid token'});
     }
 }
 module.exports = auth;
