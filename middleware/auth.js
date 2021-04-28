@@ -4,9 +4,10 @@ const config = require('config');
 
 function auth(req, res, next) {
     console.log('ovo je pre procitanog hedera');
-    console.log('ovo je procitan heder' + req.header('x-auth-token'));
+    
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1];
+    console.log('ovo je procitan heder' + token);
     if (!token) return res.status(401).json({token_error: 'Access denied. No token provided'});
 
     try {
