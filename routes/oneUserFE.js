@@ -36,8 +36,8 @@ router.post('/oneUserFE', async (req, res) => {
         const token = oneUser.generateToken();
         res.setHeader('x-auth-token', token).json(msg);
     }
-    catch (err) {
-        let msg = [false, 'registration_error', err]
+    catch (error) {
+        let msg = [false, 'registration_error', error]
         res.json(msg);
     }
 })
