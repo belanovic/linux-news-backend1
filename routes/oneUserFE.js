@@ -14,11 +14,11 @@ router.post('/oneUserFE', async (req, res) => {
         }
 
     const { error } = validateUser(req.body);
-    if (error) res.status(400).send({ validate_error: error.details[0].message });
+    if (error) res.status(400).send([false, 'validation_error', error.details[0].message]);
 
     const result = await UserFrontend.findOne({ email: req.body.email });
 
-    if (result) res.status(400).send({ error_msg: `User with email address ${req.body.email} is already registered` })
+    if (result) res.status(400).send([false, 'email_error', `User with email address ${req.body.email} is already registered`])
 
     const hashedPassword = await hash(req.body.password);
 
@@ -32,12 +32,12 @@ router.post('/oneUserFE', async (req, res) => {
 
     try {
         const savedOneUser = await oneUser.save();
+        let msg = [true, 'registration_successfull', savedOneUser]
         const token = oneUser.generateToken();
-        let msg = ['success', savedOneUser]
         res.header('x-auth-token', token).json(msg);
     }
     catch (err) {
-        let msg = ['error', err]
+        let msg = [false, 'registration_error', err]
         res.json(msg);
     }
 })
