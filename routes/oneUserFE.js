@@ -34,7 +34,7 @@ router.post('/oneUserFE', async (req, res) => {
         const savedOneUser = await oneUser.save();
         let msg = [true, 'registration_successfull', savedOneUser]
         const token = oneUser.generateToken();
-        res.setHeader('x-auth-token', token).json(msg);
+        res.header('x-auth-token', token).json(msg);
     }
     catch (error) {
         let msg = [false, 'registration_error', error]
