@@ -18,7 +18,7 @@ router.post('/authOneUserFE', async (req, res) => {
     const token = resultUsername.generateToken();
 
     try {
-        let msg = [true, 'logged_in_successfully', resultUsername.username, token];
+        let msg = [true, 'login_successfull', resultUsername.username, token];
         res.send(msg);
     }
     catch (err) {
