@@ -34,7 +34,8 @@ router.post('/oneUserFE', async (req, res) => {
 
     try {
         const savedOneUser = await oneUser.save();
-        let msg = [true, 'registration_successfull', savedOneUser, token]
+        let msg = [true, 'registration_successfull', savedOneUser, token];
+        res.json(msg);
     }
     catch (error) {
         let msg = [false, 'registration_error', error]
