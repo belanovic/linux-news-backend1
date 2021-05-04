@@ -24,13 +24,13 @@ const userFrontendSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        minLength: 3,
+        minLength: 6,
         maxLength: 1024,
         required: true
     },
     email: {
         type: String,
-        minLength: 3,
+        minLength: 10,
         maxLength: 60,
         required: true
     }
@@ -50,7 +50,7 @@ function validateUser(user) {
         lastName:  Joi.string().min(3).max(50).required(),
         username:  Joi.string().min(3).max(50).required(),
         password:  Joi.string().min(6).max(255).required(),
-        email:  Joi.string().min(3).max(60).email().required()
+        email:  Joi.string().min(10).max(60).email().required() 
     })
     return schema.validate(user);
 }
