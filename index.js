@@ -70,5 +70,7 @@ mongoose.connect(mongoAdress2, { useNewUrlParser: true, useUnifiedTopology: true
     .catch(err => console.log(err))
 
 const port = process.env.PORT || 4000;
+process.env.TZ = "Europe/Belgrade";
+
 
 server.listen(port, HOST_BACKEND, () => console.log(`Server is listening on port ${port}`));
