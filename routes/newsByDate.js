@@ -16,7 +16,7 @@ router.post('/articlesByDate', async (req, res) => {
 
             console.log('day: ' + day, 'month: ' + month, 'year: ' + year);
 
-            return day === req.body.day && month === req.body.month && year === req.body.year
+            return (day === req.body.day) &&( month === req.body.month) && (year === req.body.year)
         })
         if(arr.length === 0) {
             arr = ['nema vesti sa tim datumom3']
