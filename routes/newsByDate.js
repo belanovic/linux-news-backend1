@@ -10,7 +10,7 @@ router.post('/articlesByDate', async (req, res) => {
                 published: true
             })
         let arr = articles.filter((prom) => {
-            const day = prom.datePublished.getDay();
+            const day = prom.datePublished.getDate();
             const month = prom.datePublished.getMonth();
             const year = prom.datePublished.getFullYear();
 
