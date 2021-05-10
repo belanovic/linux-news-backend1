@@ -70,7 +70,7 @@ mongoose.connect(mongoAdress2, { useNewUrlParser: true, useUnifiedTopology: true
     .catch(err => console.log(err))
 
 const port = process.env.PORT || 4000;
-process.env.TZ = "Europe/Belgrade";
+/* process.env.TZ = "Europe/Belgrade"; */
 console.log('ovo je vreme bez varijable: ' + new Date()) 
 
 
