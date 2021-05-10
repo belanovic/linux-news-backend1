@@ -15,7 +15,7 @@ router.post('/articlesByDate', async (req, res) => {
                    prom.datePublished.getFullYear() == req.body.year
         })
         if(arr.length === 0) {
-            arr = ['nema vesti sa tim datumom']
+            arr = ['nema vesti sa tim datumom1']
         }
         res.status(200).json(arr);
     }
