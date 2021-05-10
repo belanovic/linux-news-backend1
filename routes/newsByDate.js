@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Article = require('../models/Article');
 
-router.get('/articlesByDate', async (req, res) => {
+router.post('/articlesByDate', async (req, res) => {
     console.log('evo ga zahtev sa datumom');
     try {
         const articles = await Article
