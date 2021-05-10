@@ -10,12 +10,12 @@ router.post('/articlesByDate', async (req, res) => {
                 published: true
             })
         let arr = articles.filter((prom) => {
-            return prom.datePublished.getDay() == req.body.day &&
+            return prom.datePublished.getMonth() == req.body.month /* prom.datePublished.getDay() == req.body.day &&
                    prom.datePublished.getMonth() == req.body.month &&
-                   prom.datePublished.getFullYear() == req.body.year
+                   prom.datePublished.getFullYear() == req.body.year */
         })
         if(arr.length === 0) {
-            arr = ['nema vesti sa tim datumom1']
+            arr = ['nema vesti sa tim datumom2']
         }
         res.status(200).json(arr);
     }
