@@ -14,6 +14,7 @@ const proba = require('./routes/proba');
 const oneUserFE = require('./routes/oneUserFE');
 const authUserFE = require('./routes/authUserFE');
 const config = require('config');
+const newsByDate = require('./routes/newsByDate');
 
 if(!config.get('jwtPrivateKey')) {
     console.error('FATAL ERROR: jwtPrivateKey is not defined');
@@ -60,6 +61,7 @@ app.use('/', proba);
 app.use('/', publishArticle);
 app.use('/', oneUserFE);
 app.use('/', authUserFE);
+app.use('/', newsByDate);
 
 // Add headers
 
