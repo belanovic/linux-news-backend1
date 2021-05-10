@@ -9,6 +9,9 @@ router.get('/articlesByDate', async (req, res) => {
                 published: true
             })
         const arr = articles.filter((prom) => {prom.datePublished.getMonth() === req.body.month})
+        if(arr.length === 0) {
+            arr = ['nema vesti sa tim datumom']
+        }
         res.status(200).json(arr);
     }
     catch(err) {
