@@ -5,6 +5,7 @@ const Article = require('../models/Article');
 router.put('/updateFrontpage', async (req, res) => {
     try {
         console.log('evo ga');
+        console.log(req.body.idAndPositionArr)
         const allArticles = await Article.find();
         const modifiedAllArticles = allArticles.map((prom) => {
             const idAndPositionMatch = req.body.idAndPositionArr.filter(idAndPosition => idAndPosition.id === prom._id);
