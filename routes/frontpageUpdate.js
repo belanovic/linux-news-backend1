@@ -7,7 +7,7 @@ router.put('/updateFrontpage', async (req, res) => {
         console.log('evo ga');
         const allArticles = await Article.find();
         const modifiedAllArticles = allArticles.map((prom) => {
-            const idAndPositionMatch = req.body.idAndPositionArr.filter((idAndPosition) => idAndPosition.id === prom._id);
+            const idAndPositionMatch = req.body.idAndPositionArr.filter(idAndPosition => idAndPosition.id === prom._id);
             const newArticlePosition = idAndPositionMatch.length > 0? idAndPositionMatch[0] : 0;
             prom.position = newArticlePosition;
             return prom;
