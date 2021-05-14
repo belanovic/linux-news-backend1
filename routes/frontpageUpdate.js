@@ -9,7 +9,7 @@ router.put('/updateFrontpage', async (req, res) => {
         const modifiedAllArticles = allArticles.map((prom) => {
             const idAndPositionMatch = req.body.idAndPositionArr.filter(idAndPosition => idAndPosition.id === prom._id);
             console.log(idAndPositionMatch)
-            const newArticlePosition = idAndPositionMatch.length > 0? idAndPositionMatch[0] : 0;
+            const newArticlePosition = idAndPositionMatch.length > 0? idAndPositionMatch[1] : 0;
             prom.position = newArticlePosition;
             return prom;
         })
