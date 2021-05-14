@@ -12,7 +12,7 @@ router.put('/updateFrontpage', async (req, res) => {
         })
 
         /* const article = await Article.findByIdAndUpdate(req.params.id, {position: req.body.position}, {new: true}); */
-        res.status(200).send(modifiedAllArticles);
+        res.status(200).send(req.body.idAndPositionArr);
     }
     catch(err){
         res.send(err);
