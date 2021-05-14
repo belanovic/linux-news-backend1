@@ -7,6 +7,7 @@ const server = http.createServer(app);
 const routerArticles = require('./routes/allArticles');
 const article = require('./routes/oneArticle');
 const frontpageArticles = require('./routes/frontpageArticles');
+const frontpageUpdate = require('./routes/frontpageUpdate');
 const articlePosition = require('./routes/articlePosition');
 const newsByCategory = require('./routes/newsByCategory');
 const publishArticle = require('./routes/publishArticle');
@@ -62,6 +63,7 @@ app.use('/', publishArticle);
 app.use('/', oneUserFE);
 app.use('/', authUserFE);
 app.use('/', newsByDate);
+app.use('/', frontpageUpdate);
 
 // Add headers
 
