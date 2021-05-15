@@ -13,8 +13,9 @@ router.put('/updateFrontpage', async (req, res) => {
             });
             console.log(idAndPositionMatch)
             const newArticlePosition = idAndPositionMatch.length > 0? parseInt(idAndPositionMatch[1]) : 0;
-            prom.position = newArticlePosition;
-            return prom;
+            const modifiedArticle = Object.assign({}, prom);
+            modifiedArticle.position = newArticlePosition;
+            return modifiedArticle;
         })
 
         /* const article = await Article.findByIdAndUpdate(req.params.id, {position: req.body.position}, {new: true}); */
