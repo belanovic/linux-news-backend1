@@ -11,7 +11,7 @@ router.put('/updateFrontpage', async (req, res) => {
             const idAndPositionMatch = req.body.idAndPositionArr.filter((idAndPosition) => {
                 console.log(idAndPosition.id + " i " + prom._id)
                 console.log(idAndPosition.id === prom._id)
-                console.log(typeof idAndPosition, typeof prom_id);
+                console.log(typeof idAndPosition.id, typeof prom._id);
                 return idAndPosition.id === prom._id
             });
             console.log(idAndPositionMatch)
