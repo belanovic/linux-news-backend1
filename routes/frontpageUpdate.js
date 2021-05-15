@@ -16,7 +16,7 @@ router.put('/updateFrontpage', async (req, res) => {
             return modifiedArticle; */
             const modifiedArticle = prom;
             modifiedArticle.position = newArticlePosition;
-            return modifiedArticle.sort((a, b) => {return a.position - b.position});
+            return modifiedArticle
         })
 
         /* const article = await Article.findByIdAndUpdate(req.params.id, {position: req.body.position}, {new: true}); */
