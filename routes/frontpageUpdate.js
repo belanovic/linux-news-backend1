@@ -9,8 +9,8 @@ router.put('/updateFrontpage', async (req, res) => {
         const allArticles = await Article.find();
         const modifiedAllArticles = allArticles.map((prom) => {
             const idAndPositionMatch = req.body.idAndPositionArr.filter((idAndPosition) => {
-                console.log(idAndPosition.id + " i " + prom._id)
-                
+                /* console.log(idAndPosition.id + " i " + prom._id) */
+                console.log(idAndPosition.id === prom._id)
                 return idAndPosition.id === prom._id
             });
             console.log(idAndPositionMatch)
