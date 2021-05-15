@@ -20,7 +20,7 @@ router.put('/updateFrontpage', async (req, res) => {
         })
         /* modifiedAllArticles.sort((a, b) => a.position - b.position) */
 
-        modifiedAllArticles.forEach((prom) => {
+        modifiedAllArticles.forEach(async (prom) => {
             const article = await Article.findByIdAndUpdate(prom._id, {position: prom.position}, {new: true});
         })
 
