@@ -13,7 +13,10 @@ router.put('/updateFrontpage', async (req, res) => {
             });
             console.log(idAndPositionMatch)
             const newArticlePosition = idAndPositionMatch.length > 0? parseInt(idAndPositionMatch[1]) : 0;
-            const modifiedArticle = Object.assign({}, prom);
+           /*  const modifiedArticle = Object.assign({}, prom);
+            modifiedArticle.position = newArticlePosition;
+            return modifiedArticle; */
+            const modifiedArticle = prom;
             modifiedArticle.position = newArticlePosition;
             return modifiedArticle;
         })
