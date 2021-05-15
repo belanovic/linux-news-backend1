@@ -12,7 +12,7 @@ router.put('/updateFrontpage', async (req, res) => {
                 return idAndPosition.id === prom._id.toString()
             });
             console.log(idAndPositionMatch)
-            const newArticlePosition = idAndPositionMatch.length > 0? parseInt(idAndPositionMatch[1]) : 0;
+            const newArticlePosition = idAndPositionMatch.length > 0? parseInt(idAndPositionMatch[1].newPosition) : 0;
            /*  const modifiedArticle = Object.assign({}, prom);
             modifiedArticle.position = newArticlePosition;
             return modifiedArticle; */
