@@ -65,6 +65,10 @@ const articleSchema = new mongoose.Schema({
         type: String,
         default: 'none'
     },
+    imgDescription: {
+        type: String,
+        default: 'none'
+    },
     source: {
         type: String
     },
