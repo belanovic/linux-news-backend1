@@ -4,7 +4,7 @@ const { UserFrontend, validateUserAuth } = require('../models/UserFrontend');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
 
-router.post('/authOneUserFE', async (req, res) => {
+router.post('/authOneUserFE', async (req, res) => { 
 
     const { error } = validateUserAuth(_.pick(req.body, ['username', 'password']));
     if (error) res.status(400).send([false, 'validation_error', error.details[0].message]);
