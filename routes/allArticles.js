@@ -11,8 +11,8 @@ router.get('/allArticles', auth, async (req, res) => {
         res.status(200).json(articles);    
     }
     catch(err) {
-        res.send(err)
+        res.send(err) 
     }
 })
 
-module.exports = router;
+module.exports = router;  
