@@ -24,11 +24,11 @@ const articleSchema = new mongoose.Schema({
         required: true
     },
     text: {
-        type: String
-    },
-    note: {
         type: String,
         required: true
+    },
+    note: {
+        type: String
     },
     paragraphs: {
         type: Array
