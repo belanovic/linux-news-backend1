@@ -8,7 +8,7 @@ router.get('/allArticles', auth, async (req, res) => {
         const articles = await Article
             .find()
             .sort({dateUpdated: -1}) 
-        res.status(200).json(articles);    
+        res.status(200).json(articles);     
     }
     catch(err) {
         res.send(err) 
