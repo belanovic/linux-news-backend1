@@ -64,8 +64,8 @@ app.use('/', publishArticle);
 app.use('/', oneUserFE);
 app.use('/', authUserFE);
 app.use('/', newsByDate);
-app.use('/', frontpageUpdate);
-app.use('/', scraper);
+app.use('/', frontpageUpdate); 
+app.use('/', scraper); 
 
 // Add headers
 
