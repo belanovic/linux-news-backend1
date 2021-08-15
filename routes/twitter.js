@@ -11,6 +11,8 @@ const T = new Twit({
 
 router.post('/publishTwit', async (req, res) => {
 
+    console.log('evo me sdklfjskdl lsdkjfskld sldkjflsdkf slfkjslfk dlkd f')
+
     try{
         T.post('statuses/update', { status: `${req.body.twit}` }, function (err, data, response) {
             res.send(data, response);
