@@ -17,7 +17,7 @@ const authUserFE = require('./routes/authUserFE');
 const config = require('config');
 const newsByDate = require('./routes/newsByDate');
 const scraper = require('./routes/scraper');
-const twitter = require('./routes/twiter');
+const twitter = require('./routes/twitter');
 
 if(!config.get('jwtPrivateKey')) {
     console.error('FATAL ERROR: jwtPrivateKey is not defined');
