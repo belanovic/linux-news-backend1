@@ -17,7 +17,7 @@ router.post('/publishTwit', async (req, res) => {
         T.post('statuses/update', { status: `${req.body.twit}` }, function (err, data, response) {
             res.send(response);
         }) 
-    }catch(err) {
+    }catch(err) { 
         res.send(err);
     }
 
