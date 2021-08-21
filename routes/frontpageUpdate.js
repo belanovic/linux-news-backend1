@@ -4,9 +4,10 @@ const Article = require('../models/Article');
 
 router.put('/updateFrontpage', async (req, res) => {
     try {
-        
+        console.log('updateFrontpage');
         const allArticles = await Article.find();
         const modifiedAllArticles = allArticles.map((prom) => {
+            console.log(prom);
             const idAndPositionMatch = req.body.idAndPositionArr.filter((idAndPosition) => {
                 return idAndPosition.id === prom._id.toString()
             });
