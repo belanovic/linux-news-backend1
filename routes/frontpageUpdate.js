@@ -4,12 +4,14 @@ const Article = require('../models/Article');
 
 router.put('/updateFrontpage', async (req, res) => {
     try {
-  
+        
         const allArticles = await Article.find();
         const modifiedAllArticles = allArticles.map((prom) => {
             const idAndPositionMatch = req.body.idAndPositionArr.filter((idAndPosition) => {
                 return idAndPosition.id === prom._id.toString()
             });
+            console.log('poklapanje');
+            console.log(idAndPositionMatch);
             const newArticlePosition = idAndPositionMatch.length > 0? parseInt(idAndPositionMatch[0].newPosition) : 0;
            /*  const modifiedArticle = Object.assign({}, prom);
             modifiedArticle.position = newArticlePosition;
