@@ -6,7 +6,7 @@ const auth = require('../middleware/auth');
 router.get('/allArticles', auth, async (req, res) => {  
     try {
         const articles = await Article
-            .find()
+            .find() 
             .sort({dateUpdated: -1})  
         res.status(200).json(articles);      
     }
