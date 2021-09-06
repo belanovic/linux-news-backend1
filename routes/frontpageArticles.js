@@ -10,7 +10,7 @@ router.get('/frontpageArticles', async (req, res) => {
                 published: true
             })
             .sort({position: 1}) 
-        res.status(200).json(articles);
+        res.status(200).json(articles); 
     }
     catch(err) {
         res.send(err)
