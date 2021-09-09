@@ -49,6 +49,12 @@ const articleSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    imgFilter: {
+        type: String
+    },
+    imgFilter2: {
+        type: String
+    },
     videoURL: {
         type: String,
         default: 'none'
