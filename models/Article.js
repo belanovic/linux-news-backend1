@@ -50,10 +50,10 @@ const articleSchema = new mongoose.Schema({
         required: true
     },
     imgFilter: {
-        type: String
+        type: Array
     },
     imgFilter2: {
-        type: String
+        type: Array
     },
     videoURL: {
         type: String,
