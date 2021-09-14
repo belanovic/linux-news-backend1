@@ -49,8 +49,12 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(express.json({type: ['application/json', 'text/plain']}));
+app.use(express.json({
+        type: ['application/json', 'text/plain'],
+        limit: '50mb'
+    }));
 app.use(express.urlencoded({extended: true}));
+
 
 mongoose.set('useFindAndModify', false);
 
