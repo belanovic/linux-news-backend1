@@ -18,6 +18,9 @@ const config = require('config');
 const newsByDate = require('./routes/newsByDate');
 const scraper = require('./routes/scraper');
 const twitter = require('./routes/twitter');
+const cookieParser = require('cookie-parser');
+
+
 
 if(!config.get('jwtPrivateKey')) {
     console.error('FATAL ERROR: jwtPrivateKey is not defined');
@@ -55,7 +58,6 @@ app.use(express.json({
     }));
 app.use(express.urlencoded({extended: true}));
 
-
 mongoose.set('useFindAndModify', false);
 
 
@@ -69,9 +71,10 @@ app.use('/', publishArticle);
 app.use('/', oneUserFE);
 app.use('/', authUserFE);
 app.use('/', newsByDate);
-app.use('/', frontpageUpdate); 
+app.use('/', frontpageUpdate);
 app.use('/', scraper); 
-app.use('/', twitter); 
+app.use('/', twitter);
+app.use(cookieParser());
 
 // Add headers
 
