@@ -7,7 +7,6 @@ router.get('/proba', cors({origin: 'https://site-news-cms.netlify.app/'}), async
         const odgovor = {
             poruka: 'Ovo je poruka sa cookie-em'
         }
-        console.log(req.cookies);
         /* res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000') */
         res.cookie('kolacic', 'vrednost')
         res.json(odgovor)
