@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Article = require('../models/Article');
+const auth = require('../middleware/auth');
 
-router.post('/articlesByDate', async (req, res) => {
-    console.log('evo ga zahtev sa datumom');
+router.post('/articlesByDate', auth, async (req, res) => {
     try {
         const articles = await Article
             .find({
@@ -14,7 +14,7 @@ router.post('/articlesByDate', async (req, res) => {
             const month = prom.datePublished.getMonth();
             const year = prom.datePublished.getFullYear();
 
-            console.log('day: ' + day, 'month: ' + month, 'year: ' + year);
+          /*   console.log('day: ' + day, 'month: ' + month, 'year: ' + year); */
 
             return (day === req.body.day) && (month === req.body.month) && (year === req.body.year)
         })

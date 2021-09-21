@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Article = require('../models/Article');
+const auth = require('../middleware/auth');
 
 router.get('/category/:category', async (req, res) => {
     try {

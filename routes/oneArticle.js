@@ -1,8 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const Article = require('../models/Article');
+const auth = require('../middleware/auth');
 
-router.get('/oneArticle/:id', async (req, res) => {
+router.get('/oneArticleCMS/:id', auth, async (req, res) => {
+    try {
+        const article = await Article.findById(req.params.id);
+        /* res.setHeader('Access-Control-Allow-Origin', '*' 'http://localhost:3001') */
+        res.status(200).send(article);
+    }
+    catch(err){
+        res.send(err);
+    }
+})
+router.get('/oneArticleFE/:id', async (req, res) => {
     try {
         const article = await Article.findById(req.params.id);
         /* res.setHeader('Access-Control-Allow-Origin', '*' 'http://localhost:3001') */
@@ -13,7 +24,7 @@ router.get('/oneArticle/:id', async (req, res) => {
     }
 })
 
-router.post('/oneArticle', async (req, res) => {
+router.post('/oneArticle', auth, async (req, res) => {
     const oneArticle = new Article({
         category: req.body.category,
         published: req.body.published,
@@ -49,7 +60,7 @@ router.post('/oneArticle', async (req, res) => {
 
 })
 
-router.put('/oneArticle/:id', async (req, res) => {
+router.put('/oneArticle/:id', auth, async (req, res) => {
     try {
         const article = await Article.findByIdAndUpdate(req.params.id, req.body, {new: true});
         res.status(200).send(article);
@@ -59,7 +70,7 @@ router.put('/oneArticle/:id', async (req, res) => {
     }
 })
 
-router.delete('/oneArticle/:id', async (req, res) => {
+router.delete('/oneArticle/:id', auth, async (req, res) => {
     try {
         const article = await Article.findByIdAndDelete(req.params.id);
         res.status(200).send(article);

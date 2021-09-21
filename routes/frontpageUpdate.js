@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Article = require('../models/Article');
+const auth = require('../middleware/auth');
 
-router.put('/updateFrontpage', async (req, res) => {
+router.put('/updateFrontpage',auth, async (req, res) => {
     try {
         console.log('updateFrontpage');
         const allArticles = await Article.find();
