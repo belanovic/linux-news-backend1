@@ -30,7 +30,7 @@ if(!config.get('jwtPrivateKey')) {
 const mongoAdress1 = `mongodb://localhost/news`;
 const mongoAdress2 = `mongomongodb+srv://goranbelanovic:1234@cluster0.xneom.mongodb.net/news?retryWrites=true&w=majority`;
 
-app.use(function (req, res, next) {
+app.use(function (req, res, next) {  
 
    
     // Website you wish to allow to connect
