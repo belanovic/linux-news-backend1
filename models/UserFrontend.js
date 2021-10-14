@@ -33,7 +33,32 @@ const userFrontendSchema = new mongoose.Schema({
         minLength: 10,
         maxLength: 60,
         required: true
-    }
+    },
+    profileImgURLLarge: {
+        type: String,
+        minLength: 7,
+        maxLength: 10000,
+        required: true
+    },
+    profileImgNameLarge: {
+        type: String,
+        minLength: 7,
+        maxLength: 10000,
+        required: true
+    },
+    profileImgURLSmall: {
+        type: String,
+        minLength: 7,
+        maxLength: 10000,
+        required: true
+    },
+    profileImgNameSmall: {
+        type: String,
+        minLength: 7,
+        maxLength: 10000,
+        required: true
+    }    
+
 })
 
 userFrontendSchema.methods.generateToken = function () {
@@ -43,14 +68,17 @@ userFrontendSchema.methods.generateToken = function () {
 
 const UserFrontend = mongoose.model('UserFrontend', userFrontendSchema);
 
-
 function validateUser(user) {
     const schema = Joi.object( {
         firstName: Joi.string().min(3).max(50).required(),
         lastName:  Joi.string().min(3).max(50).required(),
         username:  Joi.string().min(3).max(50).required(),
         password:  Joi.string().min(6).max(255).required(),
-        email:  Joi.string().min(10).max(60).email().required() 
+        email:  Joi.string().min(10).max(60).email().required(),
+        profileImgNameLarge: Joi.string().min(7).max(10000).required(),
+        profileImgURLLarge: Joi.string().min(7).max(10000).required(),
+        profileImgURLSmall: Joi.string().min(7).max(10000).required(),
+        profileImgNameSmall: Joi.string().min(7).max(10000).required()
     })
     return schema.validate(user);
 }
