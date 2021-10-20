@@ -50,7 +50,7 @@ const userFrontendSchema = new mongoose.Schema({
         type: String,
         minLength: 7,
         maxLength: 10000,
-        required: true
+        required: true 
     },
     profileImgNameSmall: {
         type: String,
