@@ -28,8 +28,8 @@ if(!config.get('jwtPrivateKey')) {
     process.exit(1);
 }
 
-const mongoAdress1 = `mongodb://localhost/news`;
-const mongoAdress2 = `mongomongodb+srv://goranbelanovic:1234@cluster0.xneom.mongodb.net/news?retryWrites=true&w=majority`;
+const mongoAddress1 = `mongodb://localhost/news`;
+const mongoAddress2 = `mongomongodb+srv://goranbelanovic:1234@cluster0.xneom.mongodb.net/news?retryWrites=true&w=majority`;
 
 app.use(function (req, res, next) {  
 
@@ -79,8 +79,8 @@ app.use(cookieParser());
 
 // Add headers
 
-mongoose.connect(mongoAdress2, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connected to the database'))
+mongoose.connect(mongoAddress2, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connected to the news database'))
     .catch(err => console.log(err))
 
 const port = process.env.PORT || 4000;
