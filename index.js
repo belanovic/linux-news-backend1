@@ -84,7 +84,7 @@ mongoose.connect(mongoAddress2, { useNewUrlParser: true, useUnifiedTopology: tru
     .catch(err => console.log(err))
 
 process.env.TZ = "Europe/Belgrade";
-const HOST_BACKEND = process.env.HOST_BACKEND;
+const HOST_BACKEND = process.env.HOST_BACKEND || 'localhost';
 const port = process.env.PORT || 4000;
 
 
