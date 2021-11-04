@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const http = require('http');
-const HOST_BACKEND = require('./hostBackend.js');
+// const HOST_BACKEND = require('./hostBackend.js');
 const app = express();
 const server = http.createServer(app);
 const routerArticles = require('./routes/allArticles');
@@ -83,8 +83,9 @@ mongoose.connect(mongoAddress2, { useNewUrlParser: true, useUnifiedTopology: tru
     .then(() => console.log('Connected to the news database'))
     .catch(err => console.log(err))
 
-const port = process.env.PORT || 4000;
 process.env.TZ = "Europe/Belgrade";
+const HOST_BACKEND = process.env.HOST_BACKEND;
+const port = process.env.PORT || 4000;
 
 
 server.listen(port, HOST_BACKEND, () => console.log(`Server is listening on port ${port}`));
