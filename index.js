@@ -72,12 +72,12 @@ app.use('/', oneUserFE);
 app.use('/', authUserFE);
 app.use('/', newsByDate);
 app.use('/', frontpageUpdate);
-app.use('/', scraper); 
+app.use('/', scraper);
 app.use('/', twitter);
 app.use('/', profileImg);
 app.use(cookieParser());
 
-//// Add headers
+/////// Add headers
 
 mongoose.connect(mongoAddress2, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to the news database'))
