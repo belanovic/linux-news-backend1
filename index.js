@@ -77,15 +77,16 @@ app.use('/', twitter);
 app.use('/', profileImg);
 app.use(cookieParser());
 
-/////// Add headers
+////////// Add headers
 
 mongoose.connect(mongoAddress2, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to the news database'))
-    .catch(err => console.log(err))
+    .catch(err => console.log(err)) 
 
 process.env.TZ = "Europe/Belgrade";
 const HOST_BACKEND = process.env.HOST_BACKEND || 'localhost';
 const port = process.env.PORT || 4000;
+
 
 
 server.listen(port, HOST_BACKEND, () => console.log(`Server is listening on port ${port}`));
