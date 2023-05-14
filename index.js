@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const http = require('http');
-// const HOST_BACKEND = require('./hostBackend.js');
+//// const HOST_BACKEND = require('./hostBackend.js');
 const app = express();
 const server = http.createServer(app);
 const routerArticles = require('./routes/allArticles');
