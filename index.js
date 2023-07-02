@@ -29,7 +29,7 @@ if(!config.get('jwtPrivateKey')) {
 }
 
 const mongoAddress1 = `mongodb://localhost/news`;
-const mongoAddress2 = `mongomongodb+srv://goranbelanovic:1234@cluster0.xneom.mongodb.net/news?retryWrites=true&w=majority`;
+const mongoAddress2 = `mongodb+srv://goranbelanovic:1234@cluster0.xneom.mongodb.net/news?retryWrites=true&w=majority`;
 
 app.use(function (req, res, next) {  
 
