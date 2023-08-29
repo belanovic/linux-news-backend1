@@ -20,13 +20,10 @@ const twitter = require('./routes/twitter');
 const cookieParser = require('cookie-parser');
 const profileImg = require('./routes/profileImg.js');
 
-
 if(!config.get('jwtPrivateKey')) {
     console.error('FATAL ERROR: jwtPrivateKey is not defined');
     process.exit(1);
 }
-
-
 
 app.use(function (req, res, next) {  
 
@@ -54,11 +51,24 @@ app.use(express.json({
         limit: '50mb'
     }));
 app.use(express.urlencoded({extended: true}));
-   
 
-////////// Add headerss
 
-require('./startup/db')();
+app.use('/', routerArticles);
+app.use('/', article);
+app.use('/', frontpageArticles);
+app.use('/', articlePosition);
+app.use('/', newsByCategory);
+app.use('/', proba);
+app.use('/', publishArticle);
+app.use('/', oneUserFE);
+app.use('/', authUserFE);
+app.use('/', newsByDate);
+app.use('/', frontpageUpdate);
+app.use('/', scraper);
+app.use('/', twitter);
+app.use('/', profileImg);
+app.use(cookieParser());   
+
 
 process.env.TZ = "Europe/Belgrade";
 const HOST_BACKEND = process.env.HOST_BACKEND || 'localhost';
@@ -67,3 +77,5 @@ const port = process.env.PORT || 4000;
 
 
 server.listen(port, HOST_BACKEND, () => console.log(`Server is listening on port ${port}`));
+
+require('./startup/db')()
