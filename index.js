@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const http = require('http');
 ////////// const HOST_BACKEND = require('./hostBackend.js');
 const app = express();
@@ -22,14 +21,12 @@ const cookieParser = require('cookie-parser');
 const profileImg = require('./routes/profileImg.js');
 
 
-
 if(!config.get('jwtPrivateKey')) {
     console.error('FATAL ERROR: jwtPrivateKey is not defined');
     process.exit(1);
 }
 
-const mongoAddress1 = `mongodb://localhost/news`;
-const mongoAddress2 = `mongodb+srv://goranbelanovic:1234@cluster0.xneom.mongodb.net/news?retryWrites=true&w=majority`;
+
 
 app.use(function (req, res, next) {  
 
@@ -57,31 +54,11 @@ app.use(express.json({
         limit: '50mb'
     }));
 app.use(express.urlencoded({extended: true}));
-
-mongoose.set('useFindAndModify', false);
-
-
-app.use('/', routerArticles);
-app.use('/', article);
-app.use('/', frontpageArticles);
-app.use('/', articlePosition);
-app.use('/', newsByCategory);
-app.use('/', proba);
-app.use('/', publishArticle);
-app.use('/', oneUserFE);
-app.use('/', authUserFE);
-app.use('/', newsByDate);
-app.use('/', frontpageUpdate);
-app.use('/', scraper);
-app.use('/', twitter);
-app.use('/', profileImg);
-app.use(cookieParser());   
+   
 
 ////////// Add headerss
 
-mongoose.connect(mongoAddress2, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connected to the news database'))
-    .catch(err => console.log(err)) 
+require('./startup/db')();
 
 process.env.TZ = "Europe/Belgrade";
 const HOST_BACKEND = process.env.HOST_BACKEND || 'localhost';
