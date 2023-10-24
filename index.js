@@ -1,50 +1,18 @@
 const express = require('express');
 const http = require('http');
-////////// const HOST_BACKEND = require('./hostBackend.js');
 const app = express();
 const server = http.createServer(app);
-const routerArticles = require('./routes/allArticles');
-const article = require('./routes/oneArticle');
-const frontpageArticles = require('./routes/frontpageArticles');
-const frontpageUpdate = require('./routes/frontpageUpdate');
-const articlePosition = require('./routes/articlePosition');
-const newsByCategory = require('./routes/newsByCategory');
-const publishArticle = require('./routes/publishArticle');
-const proba = require('./routes/proba');
-const oneUserFE = require('./routes/oneUserFE');
-const authUserFE = require('./routes/authUserFE');
-const config = require('config');
-const newsByDate = require('./routes/newsByDate');
-const scraper = require('./routes/scraper');
-const twitter = require('./routes/twitter');
 const cookieParser = require('cookie-parser');
-const profileImg = require('./routes/profileImg.js');
+const config = require('config');
+
 
 if(!config.get('jwtPrivateKey')) {
     console.error('FATAL ERROR: jwtPrivateKey is not defined');
     process.exit(1);
 }
+require('./startup/headers')(app)
+require('./startup/routes')(app)
 
-app.use(function (req, res, next) {  
-
-        // Request headers you wish to allow
-    /* res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type'); */
-    res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization");
-   
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
-});
 
 app.use(express.json({
         type: ['application/json', 'text/plain'],
@@ -53,20 +21,7 @@ app.use(express.json({
 app.use(express.urlencoded({extended: true}));
 
 
-app.use('/', routerArticles);
-app.use('/', article);
-app.use('/', frontpageArticles);
-app.use('/', articlePosition);
-app.use('/', newsByCategory);
-app.use('/', proba);
-app.use('/', publishArticle);
-app.use('/', oneUserFE);
-app.use('/', authUserFE);
-app.use('/', newsByDate);
-app.use('/', frontpageUpdate);
-app.use('/', scraper);
-app.use('/', twitter);
-app.use('/', profileImg);
+
 app.use(cookieParser());   
 
 
