@@ -11,7 +11,7 @@ if(!config.get('jwtPrivateKey')) {
     process.exit(1);
 }
 require('./startup/headers')(app)
-require('./startup/routes')(app)
+
 
 
 app.use(express.json({
@@ -24,12 +24,10 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(cookieParser());   
 
-
+require('./startup/routes')(app)
 process.env.TZ = "Europe/Belgrade";
 const HOST_BACKEND = process.env.HOST_BACKEND || 'localhost';
 const port = process.env.PORT || 4000;
-
-
 
 server.listen(port, HOST_BACKEND, () => console.log(`Server is listening on port ${port}`));
 
