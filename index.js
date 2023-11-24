@@ -22,7 +22,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 
-app.use(cookieParser());   
+app.use(cookieParser());
 
 require('./startup/routes')(app)
 process.env.TZ = "Europe/Belgrade";
