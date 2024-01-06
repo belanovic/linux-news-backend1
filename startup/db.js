@@ -10,5 +10,5 @@ module.exports = function() {
     
     mongoose.connect(mongoAddress2, { useNewUrlParser: true, useUnifiedTopology: true })
         .then(() => console.log('Connected to the news database'))
-        .catch(err => console.log(err)) 
+        .catch(error => console.log(error.message))
 }

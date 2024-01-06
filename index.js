@@ -2,33 +2,20 @@ const express = require('express');
 const http = require('http');
 const app = express();
 const server = http.createServer(app);
-const cookieParser = require('cookie-parser');
 const config = require('config');
-
 
 if(!config.get('jwtPrivateKey')) {
     console.error('FATAL ERROR: jwtPrivateKey is not defined');
     process.exit(1);
 }
-require('./startup/headers')(app)
 
+require('./startup/headers')(app);
+require('./startup/parsers')(app);
+require('./startup/routers')(app);
 
-
-app.use(express.json({
-        type: ['application/json', 'text/plain'],
-        limit: '50mb'
-    }));
-app.use(express.urlencoded({extended: true}));
-
-
-
-app.use(cookieParser());
-
-require('./startup/routes')(app)
-process.env.TZ = "Europe/Belgrade";
-const HOST_BACKEND = process.env.HOST_BACKEND || 'localhost';
+const hostIP = config.get('hostIP');
 const port = process.env.PORT || 4000;
 
-server.listen(port, HOST_BACKEND, () => console.log(`Server is listening on port ${port}`));
+server.listen(port, hostIP, () => console.log(`Server is listening on port ${port}`));
 
-require('./startup/db')()
+require('./startup/db')();
