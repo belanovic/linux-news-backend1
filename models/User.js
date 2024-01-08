@@ -3,7 +3,7 @@ const Joi = require('joi');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 
-const userFrontendSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
         minLength: 3,
@@ -61,12 +61,12 @@ const userFrontendSchema = new mongoose.Schema({
 
 })
 
-userFrontendSchema.methods.generateToken = function () {
+userSchema.methods.generateToken = function () {
     const token = jwt.sign({_id: this._id}, config.get('jwtPrivateKey'));
     return token
 }
 
-const UserFrontend = mongoose.model('UserFrontend', userFrontendSchema);
+const User = mongoose.model('user', userSchema);
 
 function validateUser(user) {
     const schema = Joi.object( {
@@ -90,13 +90,33 @@ function validateUserAuth(userAuth) {
     return schema.validate(userAuth);
 }
 
-module.exports.UserFrontend = UserFrontend;
+module.exports.User = User;
 module.exports.validateUser = validateUser;
 module.exports.validateUserAuth = validateUserAuth;
+module.exports.validateData = validateData;
 
-/* const schema = Joi.object({ name: Joi.string() .min(6) .required(),
-    email: Joi.string() .min(6) .required() .email(),
-    password: Joi.string() .min(6) .required() });
-    
-    const validation = schema.validate(req.body);
-    res.send(validation); */
+function validateData(type, userData) {
+    let template;
+    if(type == 'register') {
+        template = {
+            firstName: Joi.string().min(3).max(50).required(),
+            lastName:  Joi.string().min(3).max(50).required(),
+            username:  Joi.string().min(3).max(50).required(),
+            password:  Joi.string().min(6).max(255).required(),
+            email:  Joi.string().min(10).max(60).email().required(),
+            profileImgNameLarge: Joi.string().min(7).max(10000).required(),
+            profileImgURLLarge: Joi.string().min(7).max(10000).required(),
+            profileImgURLSmall: Joi.string().min(7).max(10000).required(),
+            profileImgNameSmall: Joi.string().min(7).max(10000).required()
+        }
+    } else if(type == 'login') {
+        template = {
+            username: Joi.string().min(3).max(50).required(),
+            password: Joi.string().min(6).max(255).required()
+        }
+    } else {
+        return;
+    }
+    const joiSchema = Joi.object(template);
+    return joiSchema.validate(userData);
+}
