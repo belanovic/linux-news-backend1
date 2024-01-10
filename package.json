@@ -8,7 +8,7 @@
     "start": "node index.js",
     "upload": "git add . && git commit -m 'msg' && git push"
   },
-  "engines": {  
+  "engines": {
     "node": "14.15.3"
   },
   "author": "Goran Belanovic",
@@ -26,6 +26,5 @@
     "lodash": "^4.17.21",
     "mongoose": "^5.11.7",
     "twit": "^2.2.11"
-  },
-  "devDependencies": {}
+  }
 }

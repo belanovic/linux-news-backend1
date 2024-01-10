@@ -1,30 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { User, validateUser, validateData } = require('../models/User');
+const { User, validateData } = require('../models/User');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
-
-function modifyError(err) {
-    if(err.name =='MongooseError'
-    || err.name =='CastError'
-    || err.name =='DivergentArrayError'
-    || err.name =='MissingSchemaError'
-    || err.name =='DocumentNotFoundError'
-    || err.name =='ValidatorError'
-    || err.name =='ValidationError'
-    || err.name =='MissingSchemaError'
-    || err.name =='ObjectExpectedError'
-    || err.name =='ObjectParameterError'
-    || err.name =='OverwriteModelError'
-    || err.name =='ParallelSaveError'
-    || err.name =='StrictModeError'
-    || err.name =='VersionError') {
-        err.message = `Problem with the database. ${err.name}`;
-    }
-    const stringified_error = JSON.stringify(err, Object.getOwnPropertyNames(err));
-    return JSON.parse(stringified_error)
-}
-
+/* const modifyError = require('modify_error'); */
 
 router.post('/register', async (req, res) => {
    
@@ -60,6 +39,27 @@ router.post('/register', async (req, res) => {
 })
 
 module.exports = router;
+
+function modifyError(err) {
+    if(err.name =='MongooseError'
+    || err.name =='CastError'
+    || err.name =='DivergentArrayError'
+    || err.name =='MissingSchemaError'
+    || err.name =='DocumentNotFoundError'
+    || err.name =='ValidatorError'
+    || err.name =='ValidationError'
+    || err.name =='MissingSchemaError'
+    || err.name =='ObjectExpectedError'
+    || err.name =='ObjectParameterError'
+    || err.name =='OverwriteModelError'
+    || err.name =='ParallelSaveError'
+    || err.name =='StrictModeError'
+    || err.name =='VersionError') {
+        err.message = `Problem with the database. ${err.name}`;
+    }
+    const stringified_error = JSON.stringify(err, Object.getOwnPropertyNames(err));
+    return JSON.parse(stringified_error)
+}
 
 /* router.post('/register', async (req, res) => {
 
