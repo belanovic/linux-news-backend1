@@ -3,7 +3,7 @@ const router = express.Router();
 const Article = require('../models/Article');
 const auth = require('../middleware/auth');
 
-router.get('/category/:category', async (req, res) => {
+router.get('/category/:category', auth, async (req, res) => {
     try {
         const articles = await Article
             .find({
@@ -12,8 +12,8 @@ router.get('/category/:category', async (req, res) => {
             .sort({datePublished: -1})
         res.status(200).json(articles);
     }
-    catch(err) {
-        res.send(err)
+    catch(error) {
+        res.json({error: modifyError(error)});
     }
 })
 

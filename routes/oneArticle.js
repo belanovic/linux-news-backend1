@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 const Article = require('../models/Article');
 const auth = require('../middleware/auth');
+const modifyError = require('modifyerror');
 
 router.get('/oneArticleCMS/:id', auth, async (req, res) => {
     try {
-        const article = await Article.findById(req.params.id);
-        /* res.setHeader('Access-Control-Allow-Origin', '*' 'http://localhost:3001') */
-        res.status(200).send(article);
+        const articleFound = await Article.findById(req.params.id); 
+        res.json({articleFound: articleFound});
     }
-    catch(err){
-        res.send(err);
+    catch(error){
+        res.json({error: modifyError(error)});
     }
 })
 router.get('/oneArticleFE/:id', async (req, res) => {
@@ -19,8 +19,8 @@ router.get('/oneArticleFE/:id', async (req, res) => {
         /* res.setHeader('Access-Control-Allow-Origin', '*' 'http://localhost:3001') */
         res.status(200).send(article);
     }
-    catch(err){
-        res.send(err);
+    catch(error){
+        res.json({error: modifyError(error)});
     }
 })
 
@@ -53,20 +53,33 @@ router.post('/oneArticle', auth, async (req, res) => {
     })
     try{
         const savedArticle = await oneArticle.save();
-        res.send(`Succesfully deployed article ${savedArticle}`)
-    }catch(err) {
-        res.send(err);
+        return res.json({savedArticle: savedArticle});
+
+    }catch(error) {
+        return res.json({error: modifyError(error)});
     }
 
 })
 
 router.put('/oneArticle/:id', auth, async (req, res) => {
-    try {
-        const article = await Article.findByIdAndUpdate(req.params.id, req.body, {new: true});
-        res.status(200).send(article);
+    function UpdateMsg(isSuccess, result) {
+        this.isSuccess = isSuccess; 
+        if(isSuccess) {
+            this.userUpdated = result;
+        }
+        if(!isSuccess) {
+            this.failureMsg = result;
+        }
     }
-    catch(err){
-        res.send(err);
+    try {
+        const updatedArticle = await Article.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        if(!updatedArticle) {
+            return res.json({updateMsg: new UpdateMsg(false, 'There was a problem with the update')})
+        }
+        return res.json({updateMsg: new UpdateMsg(true, updatedArticle)});
+    }
+    catch(error){
+        res.json({error: modifyError(error)});
     }
 })
 
@@ -75,8 +88,8 @@ router.delete('/oneArticle/:id', auth, async (req, res) => {
         const article = await Article.findByIdAndDelete(req.params.id);
         res.status(200).send(article);
     }
-    catch(err){
-        res.send(err);
+    catch(error){
+        res.json({error: modifyError(error)});
     }
 })
 

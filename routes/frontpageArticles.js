@@ -13,8 +13,8 @@ router.get('/frontpageArticlesCMS', auth,  async (req, res) => {
             .sort({position: 1}) 
         res.status(200).json(articles); 
     }
-    catch(err) {
-        res.send(err)
+    catch(error) {
+        res.json({error: modifyError(error)});
     }
 })
 router.get('/frontpageArticlesFE',  async (req, res) => {
@@ -27,8 +27,8 @@ router.get('/frontpageArticlesFE',  async (req, res) => {
             .sort({position: 1}) 
         res.status(200).json(articles); 
     }
-    catch(err) {
-        res.send(err)
+    catch(error) {
+        res.json({error: modifyError(error)});
     }
 })
 

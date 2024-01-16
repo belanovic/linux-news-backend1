@@ -63,23 +63,23 @@ router.post('/login', async (req, res) => {
 
 module.exports = router;
 
-function modifyError(err) {
-    if(err.name =='MongooseError'
-    || err.name =='CastError'
-    || err.name =='DivergentArrayError'
-    || err.name =='MissingSchemaError'
-    || err.name =='DocumentNotFoundError'
-    || err.name =='ValidatorError'
-    || err.name =='ValidationError'
-    || err.name =='MissingSchemaError'
-    || err.name =='ObjectExpectedError'
-    || err.name =='ObjectParameterError'
-    || err.name =='OverwriteModelError'
-    || err.name =='ParallelSaveError'
-    || err.name =='StrictModeError'
-    || err.name =='VersionError') {
-        err.message = `Problem with the database. ${err.name}`;
+function modifyError(error) {
+    if(error.name =='MongooseError'
+    || error.name =='CastError'
+    || error.name =='DivergentArrayError'
+    || error.name =='MissingSchemaError'
+    || error.name =='DocumentNotFoundError'
+    || error.name =='ValidatorError'
+    || error.name =='ValidationError'
+    || error.name =='MissingSchemaError'
+    || error.name =='ObjectExpectedError'
+    || error.name =='ObjectParameterError'
+    || error.name =='OverwriteModelError'
+    || error.name =='ParallelSaveError'
+    || error.name =='StrictModeError'
+    || error.name =='VersionError') {
+        error.message = `Problem with the database. ${error.name}`;
     }
-    const stringified_error = JSON.stringify(err, Object.getOwnPropertyNames(err));
-    return JSON.parse(stringified_error)
+    const stringifiedError = JSON.stringify(error, Object.getOwnPropertyNames(error));
+    return JSON.parse(stringifiedError)
 }

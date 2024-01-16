@@ -11,8 +11,8 @@ router.get('/proba', cors({origin: 'http://localhost:3000'}), async (req, res) =
         res.cookie('kolacic', 'vrednost')
         res.json(odgovor)
     }
-    catch(err) {
-        res.send(err)
+    catch(error) {
+        res.json({error: modifyError(error)});
     }
 })
 

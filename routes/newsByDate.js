@@ -23,8 +23,8 @@ router.post('/articlesByDate', auth, async (req, res) => {
         }
         res.status(200).json(arr);
     }
-    catch(err) {
-        res.send(err)
+    catch(error) {
+        res.json({error: modifyError(error)});
     }
 })
 

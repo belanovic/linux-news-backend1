@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const cheerio = require('cheerio');
+const auth = require('../middleware/auth');
 
 const url = 'https://www.rts.rs/';
 
 
-router.post('/scraper', async (req, res) => {
+router.post('/scraper', auth, async (req, res) => {
 
     const response2 = await axios(req.body.url);
     const html2 = response2.data;

@@ -8,8 +8,6 @@ const auth = require('../middleware/auth');
 
 router.post('/updateProfilePhotoURL/:size', auth, async (req, res) => { 
 
-    console.log('evo me')
-
     /* const { error } = validateUserAuth(_.pick(req.body, ['username', 'password']));
     if (error) res.status(400).send([false, 'validation_error', error.details[0].message]); */
 
@@ -51,9 +49,8 @@ router.post('/updateProfilePhotoURL/:size', auth, async (req, res) => {
         const msg = [true, updatedUser];
         res.send(msg);
     }
-    catch (err) {
-        const msg = [false, err]
-        res.send(msg);
+    catch (error) {
+        res.json({error: modifyError(error)});
     }
 })
 
