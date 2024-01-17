@@ -11,7 +11,7 @@ router.get('/frontpageArticlesCMS', auth,  async (req, res) => {
                 published: true
             })
             .sort({position: 1}) 
-        res.status(200).json(articles); 
+        res.json({articles: articles}); 
     }
     catch(error) {
         res.json({error: modifyError(error)});

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Article = require('../models/Article');
+const Article = require('../models/Article'); 
 const auth = require('../middleware/auth');
 const modifyError = require('modifyerror');
 
@@ -85,8 +85,8 @@ router.put('/oneArticle/:id', auth, async (req, res) => {
 
 router.delete('/oneArticle/:id', auth, async (req, res) => {
     try {
-        const article = await Article.findByIdAndDelete(req.params.id);
-        res.status(200).send(article);
+        const articleDeleted = await Article.findByIdAndDelete(req.params.id);
+        res.json({articleDeleted: articleDeleted});
     }
     catch(error){
         res.json({error: modifyError(error)});

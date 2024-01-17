@@ -15,7 +15,7 @@ require('./startup/parsers')(app);
 require('./startup/routers')(app);
 
 const hostIP = config.get('hostIP');
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4000; 
 
 server.listen(port, hostIP, () => console.log(`Server is listening on port ${port}`));
 
