@@ -3,6 +3,7 @@ const router = express.Router();
 const { User, validateData } = require('../models/User');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
+const modifyError = require('modifyerror');
 
 
 router.post('/login', async (req, res) => {
@@ -62,7 +63,7 @@ router.post('/login', async (req, res) => {
 }) */
 
 module.exports = router;
-
+/* 
 function modifyError(error) {
     if(error.name =='MongooseError'
     || error.name =='CastError'
@@ -82,4 +83,4 @@ function modifyError(error) {
     }
     const stringifiedError = JSON.stringify(error, Object.getOwnPropertyNames(error));
     return JSON.parse(stringifiedError)
-}
+} */

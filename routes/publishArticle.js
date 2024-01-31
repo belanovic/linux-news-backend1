@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const Article = require('../models/Article');
 const auth = require('../middleware/auth');
+const modifyError = require('modifyerror');
 
 router.put('/publishArticle/:id', auth, async (req, res) => {
     try {
-        const article = await Article.findByIdAndUpdate(
+        const publishedArticle = await Article.findByIdAndUpdate(
             req.params.id, 
             {published: req.body.published, 
                 datePublished: req.body.datePublished, 
@@ -13,7 +14,7 @@ router.put('/publishArticle/:id', auth, async (req, res) => {
             },
             {new: true}
         );
-        res.status(200).send(article);
+        res.json({publishedArticle: publishedArticle});
     }
     catch(error){
         res.json({error: modifyError(error)});

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 var Twit = require('twit');
 const auth = require('../middleware/auth');
+const modifyError = require('modifyerror');
 
 const T = new Twit({
     consumer_key: 'CwE9zZzMc1jbCWGByKuLWIbi6',
@@ -12,11 +13,11 @@ const T = new Twit({
 
 router.post('/publishTwit', auth, async (req, res) => {
 
-    console.log('evo me sdklfjskdl lsdkjfskld sldkjflsdkf slfkjslfk dlkd f')
+    console.log(req.body.twit)
 
     try{
         T.post('statuses/update', { status: `${req.body.twit}` }, function (err, data, response) {
-            res.send(response);
+            res.json({responseTwitt: response});
         }) 
     }catch(error) { 
         res.json({error: modifyError(error)});

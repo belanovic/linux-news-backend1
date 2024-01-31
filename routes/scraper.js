@@ -3,12 +3,13 @@ const router = express.Router();
 const axios = require('axios');
 const cheerio = require('cheerio');
 const auth = require('../middleware/auth');
-
+const modifyError = require('modifyerror');
 const url = 'https://www.rts.rs/';
 
 
 router.post('/scraper', auth, async (req, res) => {
 
+try {
     const response2 = await axios(req.body.url);
     const html2 = response2.data;
     $ = cheerio.load(html2);
@@ -19,12 +20,16 @@ router.post('/scraper', auth, async (req, res) => {
     paragraphs.each(function(){
         text = text + '<p>' + $(this).text() + '</p>';
     })
-    const article = {
+    const scrapedArticle = {
         title,
         subtitle,
         text
     }
-    res.status(200).json(article);
+    res.json({scrapedArticle: scrapedArticle});
+} catch (error) {
+    return res.json({error: modifyError(error)});
+}
+   
 })
 
 module.exports = router;

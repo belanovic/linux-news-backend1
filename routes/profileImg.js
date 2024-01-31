@@ -5,6 +5,7 @@ const _ = require('lodash');
 const bcrypt = require('bcrypt');
 const { result } = require('lodash');
 const auth = require('../middleware/auth');
+const modifyError = require('modifyerror');
 
 router.post('/updateProfilePhotoURL/:size', auth, async (req, res) => { 
 

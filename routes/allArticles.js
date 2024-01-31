@@ -7,7 +7,7 @@ const modifyError = require('modifyerror');
 router.get('/allArticles', auth, async (req, res) => { 
     try {
         const articles = await Article
-            .find() 
+            .find()
             .sort({dateUpdated: -1})
         res.json(articles);
     }

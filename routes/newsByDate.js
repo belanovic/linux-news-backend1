@@ -2,14 +2,24 @@ const express = require('express');
 const router = express.Router();
 const Article = require('../models/Article');
 const auth = require('../middleware/auth');
+const modifyError = require('modifyerror');
 
 router.post('/articlesByDate', auth, async (req, res) => {
+    function NewsByDateMsg(isSuccess, result) {
+        this.isSuccess = isSuccess; 
+        if(isSuccess) {
+            this.newsByDate = result;
+        }
+        if(!isSuccess) {
+            this.failureMsg = result;
+        }
+    }
     try {
-        const articles = await Article
+        const articlesPublished = await Article
             .find({
                 published: true
             })
-        let arr = articles.filter((prom) => {
+        let newsByDate = articlesPublished.filter((prom) => {
             const day = prom.datePublished.getDate();
             const month = prom.datePublished.getMonth();
             const year = prom.datePublished.getFullYear();
@@ -18,10 +28,10 @@ router.post('/articlesByDate', auth, async (req, res) => {
 
             return (day === req.body.day) && (month === req.body.month) && (year === req.body.year)
         })
-        if(arr.length === 0) {
-            arr = ['nema vesti sa tim datumom3']
+        if(newsByDate.length === 0) {
+            return res.json({newsByDateMsg: new NewsByDateMsg(false, 'Nema vesti sa tim datumom')})
         }
-        res.status(200).json(arr);
+        return res.json({newsByDateMsg: new NewsByDateMsg(true, newsByDate)})
     }
     catch(error) {
         res.json({error: modifyError(error)});
