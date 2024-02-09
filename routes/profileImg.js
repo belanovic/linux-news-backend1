@@ -48,7 +48,7 @@ router.post('/updateProfilePhotoURL/:size', auth, async (req, res) => {
 
     try {
         const msg = [true, updatedUser];
-        res.send(msg);
+        res.json(msg);
     }
     catch (error) {
         res.json({error: modifyError(error)});

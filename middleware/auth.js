@@ -6,7 +6,7 @@ const _ = require('lodash')
 function auth(req, res, next) {
     try {
         const token = req.cookies.token;
-        const decodedPayload = jwt.verify(token, config.get('jwtPrivateKeyy'));
+        const decodedPayload = jwt.verify(token, config.get('jwtPrivateKey'));
         req.userData = _.pick(decodedPayload, ['username', 'password']);
         next()
     } catch (error) {
