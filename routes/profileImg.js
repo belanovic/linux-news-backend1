@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { UserFrontend, validateUserAuth } = require('../models/User');
+const { User, validateUserAuth } = require('../models/User');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
 const { result } = require('lodash');
@@ -13,11 +13,11 @@ router.post('/updateProfilePhotoURL/:size', auth, async (req, res) => {
     if (error) res.status(400).send([false, 'validation_error', error.details[0].message]); */
 
 
-    let resultUser = await UserFrontend.findOne({ username: req.body.username });
+    let resultUser = await User.findOne({ username: req.body.username });
 
     if (!resultUser) res.status(400).send([false, 'username_error', `Invalid username or password`]);
 
-    resultUser = await UserFrontend.findOne({ email: req.body.email });
+    resultUser = await User.findOne({ email: req.body.email });
 
     if (!resultUser) res.status(400).send([false, 'email_error', `Invalid email`]);
     
@@ -38,7 +38,7 @@ router.post('/updateProfilePhotoURL/:size', auth, async (req, res) => {
         }
     }
 
-    let updatedUser = await UserFrontend.findOneAndUpdate(
+    let updatedUser = await User.findOneAndUpdate(
             {username: req.body.username}, 
             update, 
             {
