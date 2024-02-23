@@ -3,15 +3,28 @@ const router = express.Router();
 const { User, validateUserAuth } = require('../models/User');
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
-const { result } = require('lodash');
+const { result } = require('lodash'); 
 const auth = require('../middleware/auth');
 const modifyError = require('modifyerror');
 
 router.post('/updateProfilePhotoURL/:size', auth, async (req, res) => { 
 
-    /* const { error } = validateUserAuth(_.pick(req.body, ['username', 'password']));
-    if (error) res.status(400).send([false, 'validation_error', error.details[0].message]); */
+    function UpdateMsg(isSuccess, result) {
+        this.isSuccess = isSuccess; 
+        if(isSuccess) {
+            this.userUpdated = result;
+        }
+        if(!isSuccess) {
+            this.failureMsg = result;
+        }
+    }
 
+    try {
+        
+        
+    } catch (error) {
+        
+    }
 
     let resultUser = await User.findOne({ username: req.body.username });
 
