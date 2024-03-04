@@ -4,10 +4,20 @@ const Article = require('../models/Article');
 const auth = require('../middleware/auth');
 const modifyError = require('modifyerror');
 
-router.get('/allArticles', auth, async (req, res) => { 
+router.post('/allArticles', auth, async (req, res) => {
+    
+    const pageNum = parseInt(req.params.pageNum);
+    const title = req.body.title;
+    const tag = req.body.tag;
+    const reg = new RegExp(`${title}`, 'gi');
+
     try {
         const articles = await Article
-            .find()
+            .find({
+                title: {$regex: reg}
+            })
+            .skip((pageNum - 1) * 10)
+            .limit(10)
             .sort({dateUpdated: -1})
         res.json(articles);
     }

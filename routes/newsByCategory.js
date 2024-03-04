@@ -4,12 +4,16 @@ const Article = require('../models/Article');
 const auth = require('../middleware/auth');
 const modifyError = require('modifyerror');
 
-router.get('/category/:category', auth, async (req, res) => {
+router.get('/category/:category/:page', auth, async (req, res) => {
+    const category = req.params.category;
+    const page = parseInt(req.params.page);
     try {
         const newsByCategory = await Article
             .find({
                 category: req.params.category
             })
+            .skip((page - 1) * 10)
+            .limit(10)
             .sort({datePublished: -1})
 
         res.json({newsByCategory: newsByCategory});

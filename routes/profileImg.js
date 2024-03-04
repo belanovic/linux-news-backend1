@@ -18,9 +18,9 @@ router.post('/updateProfilePhotoURL/:size', auth, async (req, res) => {
             this.failureMsg = result;
         }
     }
-
+ 
     try {
-        let resultUser = await User.findOne({ username: req.body.username });
+        let resultUser = await User.findOne({ username: req.body.username});
         if (!resultUser) return res.json({updateMsg: new UpdateMsg(false, `Invalid username or password`)});
 
         resultUser = await User.findOne({ email: req.body.email });
