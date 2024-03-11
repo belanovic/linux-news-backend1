@@ -4,10 +4,9 @@ const Article = require('../models/Article');
 const auth = require('../middleware/auth');
 const modifyError = require('modifyerror');
 
-router.post('/allArticles', auth, async (req, res) => {
-    console.log('evo meeeeee');
+router.post('/lastPage', auth, async (req, res) => {
+console.log('evo me iz last page');
     const category = req.body.category;
-    const pageNum = parseInt(req.body.pageNum.number);
     const title = req.body.title;
     const tag = req.body.tag;
     const regTitle = new RegExp(`${title}`, 'gi');
@@ -36,12 +35,13 @@ router.post('/allArticles', auth, async (req, res) => {
                     category: category
                 }
             )
-            .skip((pageNum - 1) * 10)
-            .limit(10)
-            .sort({dateUpdated: -1})
+            .sort({dateUpdated: 1})
+            .limit(count % 10)
+        
         res.json({articlesMsg: {
-            articles: articles
-        }});
+            articles: articles,
+            numOfPages: Math.ceil(count/10)
+        }})
     }
     catch(error) {
         res.json({error: modifyError(error)});
@@ -49,5 +49,3 @@ router.post('/allArticles', auth, async (req, res) => {
 })
 
 module.exports = router;
-
-
