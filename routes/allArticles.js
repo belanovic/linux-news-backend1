@@ -5,13 +5,13 @@ const auth = require('../middleware/auth');
 const modifyError = require('modifyerror');
 
 router.post('/allArticles', auth, async (req, res) => {
-    console.log('evo meeeeee');
+
     const category = req.body.category;
     const pageNum = parseInt(req.body.pageNum.number);
     const title = req.body.title;
     const tag = req.body.tag;
     const regTitle = new RegExp(`${title}`, 'gi');
-    const regTag = new RegExp(`${tag}`, 'gi');
+    const regTag = new RegExp(`${tag}`, 'gi');  
 
     try {
         let count = await Article.find(category == 'allArticles'? 
@@ -25,7 +25,7 @@ router.post('/allArticles', auth, async (req, res) => {
         })
         .countDocuments()
 
-        const articles = await Article
+        let articles = await Article
             .find(category == 'allArticles'? 
                 {
                     title: {$regex: regTitle}
@@ -39,6 +39,13 @@ router.post('/allArticles', auth, async (req, res) => {
             .skip((pageNum - 1) * 10)
             .limit(10)
             .sort({dateUpdated: -1})
+
+        if(req.body.selectedDate != null) {
+            const queryDate = new Date(req.body.selectedDate).toDateString();
+            articles = articles.filter((article) => {
+                return article.dateCreated.toDateString() == queryDate
+            })
+        }
         res.json({articlesMsg: {
             articles: articles
         }});
