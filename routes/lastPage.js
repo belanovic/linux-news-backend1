@@ -5,7 +5,7 @@ const auth = require('../middleware/auth');
 const modifyError = require('modifyerror');
 
 router.post('/lastPage', auth, async (req, res) => {
-console.log('evo me iz last page');
+
     const category = req.body.category;
     const title = req.body.title;
     const tag = req.body.tag;
@@ -20,6 +20,7 @@ console.log('evo me iz last page');
         : 
         {
             title: {$regex: regTitle},
+            tagsArr: {$regex: regTag},
             category: category
         })
         .countDocuments()
@@ -32,6 +33,7 @@ console.log('evo me iz last page');
                 : 
                 {
                     title: {$regex: regTitle},
+                    tagsArr: {$regex: regTag},
                     category: category
                 }
             )

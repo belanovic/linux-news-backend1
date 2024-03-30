@@ -16,11 +16,13 @@ router.post('/allArticles', auth, async (req, res) => {
     try {
         let count = await Article.find(category == 'allArticles'? 
         {
-            title: {$regex: regTitle}
+            title: {$regex: regTitle},
+            tagsArr: {$in: ['stiii']}
         }
         : 
         {
             title: {$regex: regTitle},
+            tagsArr: {$in: ['stiii']},
             category: category
         })
         .countDocuments()
@@ -28,11 +30,13 @@ router.post('/allArticles', auth, async (req, res) => {
         let articles = await Article
             .find(category == 'allArticles'? 
                 {
-                    title: {$regex: regTitle}
+                    title: {$regex: regTitle},
+                    tagsArr: {$in: [regTag]}
                 }
                 : 
                 {
                     title: {$regex: regTitle},
+                    tagsArr: {$in: [regTag]},
                     category: category
                 }
             )
