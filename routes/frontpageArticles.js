@@ -18,7 +18,9 @@ router.get('/frontpageArticlesCMS', auth, async (req, res) => {
         res.json({error: modifyError(error)});
     }
 })
-router.get('/frontpageArticlesFE',  async (req, res) => {
+router.get('/frontpageArticlesFE', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');
+
     try {
         const articles = await Article
             .find({
@@ -26,7 +28,7 @@ router.get('/frontpageArticlesFE',  async (req, res) => {
                 published: true
             })
             .sort({position: 1}) 
-        res.status.json(articles); 
+        res.json(articles); 
     }
     catch(error) {
         res.json({error: modifyError(error)});

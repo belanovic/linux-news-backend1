@@ -14,10 +14,10 @@ router.get('/oneArticleCMS/:id', auth, async (req, res) => {
     }
 })
 router.get('/oneArticleFE/:id', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001')
     try {
-        const article = await Article.findById(req.params.id);
-        /* res.setHeader('Access-Control-Allow-Origin', '*' 'http://localhost:3001') */
-        res.status(200).send(article);
+        const articleFound = await Article.findById(req.params.id);
+        res.json({articleFound: articleFound});
     }
     catch(error){
         res.json({error: modifyError(error)});
