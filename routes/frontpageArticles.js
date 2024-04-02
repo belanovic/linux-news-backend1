@@ -22,13 +22,13 @@ router.get('/frontpageArticlesFE', async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');
 
     try {
-        const articles = await Article
+        const frontpageArticles = await Article
             .find({
                 position: {$gt: 0, $lt: 21},
                 published: true
             })
             .sort({position: 1}) 
-        res.json(articles); 
+        res.json({frontpageArticles: frontpageArticles}); 
     }
     catch(error) {
         res.json({error: modifyError(error)});

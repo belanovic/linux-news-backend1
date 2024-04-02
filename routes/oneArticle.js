@@ -7,20 +7,20 @@ const modifyError = require('modifyerror');
 router.get('/oneArticleCMS/:id', auth, async (req, res) => {
     try {
         const articleFound = await Article.findById(req.params.id); 
-        res.json({articleFound: articleFound});
+        return res.json({articleFound: articleFound});
     }
     catch(error){
-        res.json({error: modifyError(error)});
+        return res.json({error: modifyError(error)});
     }
 })
 router.get('/oneArticleFE/:id', async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001')
     try {
         const articleFound = await Article.findById(req.params.id);
-        res.json({articleFound: articleFound});
+        return res.json({articleFound: articleFound});
     }
     catch(error){
-        res.json({error: modifyError(error)});
+        return res.json({error: modifyError(error)});
     }
 })
 
