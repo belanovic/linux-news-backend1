@@ -17,12 +17,12 @@ router.post('/allArticles', auth, async (req, res) => {
         let count = await Article.find(category == 'allArticles'? 
         {
             title: {$regex: regTitle},
-            tagsArr: {$in: ['stiii']}
+            tagsArr: {$in: [regTag]}
         }
         : 
         {
             title: {$regex: regTitle},
-            tagsArr: {$in: ['stiii']},
+            tagsArr: {$in: [regTag]},
             category: category
         })
         .countDocuments()

@@ -8,10 +8,12 @@ const proba = require('../routes/proba.js');
 const register = require('../routes/register.js');
 const login = require('../routes/login.js');
 const newsByDate = require('../routes/newsByDate.js');
+const newsByCategory = require('../routes/newsByCategory.js');
 const scraper = require('../routes/scraper.js');
 const twitter = require('../routes/twitter.js');
 const profileImg = require('../routes/profileImg.js');
 const lastPage = require('../routes/lastPage.js');
+const lastPageFE = require('../routes/lastPageFE.js');
 
 module.exports = function(app) {
     app.use('/', allArticles);
@@ -28,4 +30,6 @@ module.exports = function(app) {
     app.use('/', twitter);
     app.use('/', profileImg);
     app.use('/', lastPage);
+    app.use('/', lastPageFE);
+    app.use('/', newsByCategory)
 }
