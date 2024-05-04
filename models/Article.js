@@ -84,7 +84,7 @@ const articleSchema = new mongoose.Schema({
     },
     imgDescription: {
         type: String,
-        default: 'none'
+        default: 'none'  
     },
     source: {
         type: String
