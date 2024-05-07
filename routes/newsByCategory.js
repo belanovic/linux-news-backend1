@@ -28,9 +28,8 @@ const Article = require('../models/Article');
 const modifyError = require('modifyerror');
 
 router.post('/category', async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');
+    /* res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001'); */
 
-    console.log('evo meeeeeeeee')
 
     const category = req.body.category;
     const pageNum = parseInt(req.body.pageNum.number);
