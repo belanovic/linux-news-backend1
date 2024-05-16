@@ -8,7 +8,7 @@ router.get('/frontpageArticlesCMS', auth, async (req, res) => {
     try {
         const articles = await Article
             .find({
-                position: {$gt: 0, $lt: 21},
+                position: {$gt: 0, $lt: 100},
                 published: true
             }) 
             .sort({position: 1}) 
@@ -24,7 +24,7 @@ router.get('/frontpageArticlesFE', async (req, res) => {
     try {
         const frontpageArticles = await Article
             .find({
-                position: {$gt: 0, $lt: 21},
+                position: {$gt: 0, $lt: 100},
                 published: true
             })
             .sort({position: 1}) 
