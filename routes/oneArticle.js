@@ -30,6 +30,7 @@ router.post('/oneArticle', auth, async (req, res) => {
         published: req.body.published,
         position: req.body.position,
         title: req.body.title,
+        supertitle: req.body.supertitle,
         subtitle: req.body.subtitle,
         text: req.body.text,
         paragraphs: req.body.paragraphs,
@@ -73,6 +74,7 @@ router.put('/oneArticle/:id', auth, async (req, res) => {
     }
     try {
         const updatedArticle = await Article.findByIdAndUpdate(req.params.id, req.body, {new: true});
+  
         if(!updatedArticle) {
             return res.json({updateMsg: new UpdateMsg(false, 'There was a problem with the update')})
         }

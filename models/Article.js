@@ -19,6 +19,10 @@ const articleSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    supertitle: {
+        type: String,
+        required: false
+    },
     subtitle: {
         type: String,
         required: true
@@ -93,8 +97,7 @@ const articleSchema = new mongoose.Schema({
         type: String
     }, 
     tagsArr: {
-        type: Array,
-        default: ['vesti']
+        type: Array
     }
 
 })

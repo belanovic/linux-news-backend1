@@ -5,12 +5,15 @@ const auth = require('../middleware/auth');
 const modifyError = require('modifyerror');
 
 router.put('/articlePosition/:id', auth, async (req, res) => {
+    
     try {
         const article = await Article.findByIdAndUpdate(req.params.id, {position: req.body.position}, {new: true});
-        res.json({updatedArticle: updatedArticle});
+
+        return res.json({updatedArticle: article});
     }
     catch(error){
-        res.json({error: modifyError(error)});
+        console.log('eovo meeeeeee')
+        return res.json({error: modifyError(error)});
     }
 })
 
