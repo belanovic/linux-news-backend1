@@ -4,7 +4,29 @@ const Settings = require('../models/Settings');
 const auth = require('../middleware/auth');
 const modifyError = require('modifyerror');
 
-router.get('/getSettings', auth, async (req, res) => {
+router.get('/getSettingsCMS', auth, async (req, res) => {
+    
+     
+    function SettingsMsg(isSuccess, result) {
+        this.isSuccess = isSuccess; 
+        if(isSuccess) {
+            this.settings = result;
+        }
+        if(!isSuccess) {
+            this.failureMsg = result;
+        }
+    }
+
+    try {
+        const settingsSchemaObj = await Settings.find();
+        return res.json({settingsMsg: new SettingsMsg(true, settingsSchemaObj[0].settings)});
+    }
+
+    catch(error){
+        res.json({error: modifyError(error)});
+    }
+})
+router.get('/getSettingsFE', async (req, res) => {
     
      
     function SettingsMsg(isSuccess, result) {
