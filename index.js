@@ -14,7 +14,7 @@ require('./startup/parsers')(app);
 require('./startup/routers')(app);
 
 app.get('/n', (req, res) => {
-    res.send('proba uspelaaaaa!!!!!!!')
+    res.send('proba uspela')
     res.end()
 })
 
