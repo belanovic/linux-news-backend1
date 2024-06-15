@@ -4,7 +4,6 @@ const Article = require('../models/Article');
 const modifyError = require('modifyerror')
 
 router.get('/category/:category', async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');
     try {
         const newsByCategory = await Article
         .find({
@@ -28,8 +27,6 @@ const Article = require('../models/Article');
 const modifyError = require('modifyerror');
 
 router.post('/category', async (req, res) => {
-    /* res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001'); */
-
 
     const category = req.body.category;
     const pageNum = parseInt(req.body.pageNum.number);

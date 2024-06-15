@@ -1,12 +1,29 @@
 const cors = require("cors");
 module.exports = function (app) {
 
-    // app.use(cors({ origin: ["http://localhost:3000"] }));
+    let allowOrigin;
+
     app.use(function (req, res, next) {  
-        
+        if((req.headers.origin && (req.headers.origin.includes('http://localhost')) || req.headers.origin == 'onlinehost')) {
+            res.setHeader('Access-Control-Allow-Origin', req.headers.origin); 
+        }
         // Website you wish to allow to connect
-        /* res.setHeader('Access-Control-Allow-Origin', '*'); */
-        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000'); 
+
+        //  res.setHeader('Access-Control-Allow-Origin', '*'); 
+
+         // res.setHeader('Access-Control-Allow-Origin', req.get('origin')); 
+        
+       
+         /* console.log(req.get('host'))  
+         
+         console.log(req.headers.host)  
+   
+         console.log(req.hostname)  
+   
+         console.log(req.get('origin'))  
+
+         console.log(req.headers.origin) */   
+   
         
         // Request methods you wish to allow
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

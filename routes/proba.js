@@ -7,7 +7,7 @@ router.get('/proba', cors({origin: 'http://localhost:3000'}), async (req, res) =
         const odgovor = {
             poruka: 'Ovo je poruka sa cookie-em'
         }
-        /* res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000') */
+
         res.cookie('kolacic', 'vrednost')
         res.json(odgovor)
     }
@@ -16,8 +16,8 @@ router.get('/proba', cors({origin: 'http://localhost:3000'}), async (req, res) =
     }
 })
 
-router.get('/probaa', /* cors({origin: 'http://localhost:3000'}), */ (req, res) => {
-    /* res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000') */
+router.get('/probaa', (req, res) => {
+
     const obj = {broj: 3333}
     res.cookie('kolacic', 'vrednostiiii').json(obj)
 })

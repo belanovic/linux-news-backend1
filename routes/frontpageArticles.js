@@ -19,7 +19,6 @@ router.get('/frontpageArticlesCMS', auth, async (req, res) => {
     }
 })
 router.get('/frontpageArticlesFE', async (req, res) => {
-    /* res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001'); */
 
     try {
         const frontpageArticles = await Article

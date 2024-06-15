@@ -38,7 +38,7 @@ router.post('/lastPage', auth, async (req, res) => {
                 }
             )
             .sort({dateUpdated: 1})
-            .limit(count % 10)
+            .limit(count % 10 == 0? 10 : count % 10)
         
         res.json({articlesMsg: {
             articles: articles,

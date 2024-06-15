@@ -2,8 +2,7 @@ const express = require('express');
 const http = require('http');
 const app = express();
 const server = http.createServer(app);
-const config = require('config'); 
-
+const config = require('config');
 
 if(!config.get('jwtPrivateKey')){
     console.error('FATAL ERROR: jwtPrivateKey is not defined');
@@ -13,6 +12,11 @@ if(!config.get('jwtPrivateKey')){
 require('./startup/headers')(app);
 require('./startup/parsers')(app);
 require('./startup/routers')(app);
+
+app.get('/n', (req, res) => {
+    res.send('proba uspela')
+    res.end()
+})
 
 const hostIP = config.get('hostIP');
 const port = process.env.PORT || 4000; 

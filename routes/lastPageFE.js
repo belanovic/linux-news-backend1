@@ -6,7 +6,6 @@ const modifyError = require('modifyerror');
 
 router.post('/lastPageFE', async (req, res) => {
 
-    /* res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001'); */
     const category = req.body.category;
 
     try {
