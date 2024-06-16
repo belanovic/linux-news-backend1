@@ -31,6 +31,8 @@ router.post('/login', async (req, res) => {
   
         /* const token = jwt.sign(userData, config.get('jwtPrivateKey'), {expiresIn: '55m'}); */
         const token = userRegistered.generateToken();
+
+        console.log(token)
         
         return res.cookie('token', token, {/* httpOnly: true, */ sameSite: 'none', secure: true, partitioned: true}).json({loginMsg: new LoginMsg(true, userRegistered)})
 
