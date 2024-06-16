@@ -23,4 +23,6 @@ const port = process.env.PORT || 4000;
 
 server.listen(port, hostIP, () => console.log(`Server is listening on port ${port}`));
 
+console.log(process.env);
+
 require('./startup/db')();
