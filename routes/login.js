@@ -18,6 +18,7 @@ router.post('/login', async (req, res) => {
     }
 
     try {
+        const userData = req.body;
         
         const {error} = validateData('login', userData);
         if(error) return res.json({loginMsg: new LoginMsg(false, error.message)});
