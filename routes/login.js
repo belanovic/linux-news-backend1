@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
         /* const token = jwt.sign(userData, config.get('jwtPrivateKey'), {expiresIn: '55m'}); */
         const token = userRegistered.generateToken();
         
-        return res.cookie('token', token, {httpOnly: false, sameSite: 'none', secure: true, partitioned: true}).json({loginMsg: new LoginMsg(true, userRegistered)})
+        return res.cookie('token', token, {httpOnly: false, sameSite: 'lax', secure: true, partitioned: true}).json({loginMsg: new LoginMsg(true, userRegistered)})
 
     } catch (error) {
         return res.json({error: modifyError(error)});
