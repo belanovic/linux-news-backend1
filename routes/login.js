@@ -7,10 +7,11 @@ const modifyError = require('modifyerror');
 
 
 router.post('/login', async (req, res) => {
-    function LoginMsg(isSuccess, result) {
+    function LoginMsg(isSuccess, result, token) {
         this.isSuccess = isSuccess; 
         if(isSuccess) {
             this.userLoggedIn = result;
+            this.token = token
         }
         if(!isSuccess) {
             this.failureMsg = result;
@@ -32,8 +33,8 @@ router.post('/login', async (req, res) => {
         /* const token = jwt.sign(userData, config.get('jwtPrivateKey'), {expiresIn: '55m'}); */
         const token = userRegistered.generateToken();
         
-        res.cookie('token', token, {httpOnly: false, sameSite: 'none', secure: true})
-        return res.json({loginMsg: new LoginMsg(true, userRegistered)})
+        res.cookie('token', token, {httpOnly: false, sameSite: 'lax', secure: true})
+        return res.json({loginMsg: new LoginMsg(true, userRegistered, token)})
 
     } catch (error) {
         return res.json({error: modifyError(error)});
