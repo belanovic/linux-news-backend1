@@ -4,9 +4,9 @@ module.exports = function (app) {
     let allowOrigin;
 
     app.use(function (req, res, next) {  
-        /* if((req.headers.origin && (req.headers.origin.includes('http://localhost')) || req.headers.origin == 'https://linux-news-cms.onrender.com')) {
+        if((req.headers.origin && (req.headers.origin.includes('http://localhost')) || req.headers.origin == 'https://linux-news-cms.onrender.com')) {
             res.setHeader('Access-Control-Allow-Origin', req.headers.origin); 
-        } */
+        }
         
         // Website you wish to allow to connect
 
