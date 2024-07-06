@@ -11,6 +11,7 @@ function auth(req, res, next) {
         req.userData = _.pick(decodedPayload, ['username', 'password']);
         next()
     } catch (error) {
+        /* return res.status(401).clearCookie('token').json({error: modifyError(error)}); */
         return res.status(401).clearCookie('token').json({error: modifyError(error)});
     }
 }
