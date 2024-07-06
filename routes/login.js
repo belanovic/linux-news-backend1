@@ -19,7 +19,7 @@ router.post('/login', async (req, res) => {
     }
 
     try {
-        const userData = req.body;
+        const userData = req.body; 
         
         const {error} = validateData('login', userData);
         if(error) return res.json({loginMsg: new LoginMsg(false, error.message)});
@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
         /* const token = jwt.sign(userData, config.get('jwtPrivateKey'), {expiresIn: '55m'}); */
         const token = userRegistered.generateToken();
         
-        res.cookie('token', token, {httpOnly: false, sameSite: 'none', secure: true})
+        /* res.cookie('token', token, {httpOnly: false, sameSite: 'none', secure: true}) */
         return res.json({loginMsg: new LoginMsg(true, userRegistered, token)})
 
     } catch (error) {
