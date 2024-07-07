@@ -4,14 +4,14 @@ const _ = require('lodash')
 
 
 function auth(req, res, next) {
-    console.log(req.cookies.token)
     try {
-        const token = req.cookies.token;
+        const token = req.headers.authorization.replace('Bearer ', '');
         const decodedPayload = jwt.verify(token, config.get('jwtPrivateKey'));
         req.userData = _.pick(decodedPayload, ['username', 'password']);
         next()
     } catch (error) {
-        return res.status(401).clearCookie('token').json({error: modifyError(error)});
+        /* return res.status(401).clearCookie('token').json({error: modifyError(error)}); */
+        return res.status(401).json({error: modifyError(error)});
     }
 }
 
