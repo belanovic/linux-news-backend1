@@ -13,7 +13,7 @@ router.get('/logout', async (req, res) => {
     }
 
     try {
-        return res.clearCookie('token').json({logoutMsg: new LogoutMsg(true)})
+        return res.clearCookie('token', {httpOnly: false, sameSite: 'lax', secure: true}).json({logoutMsg: new LogoutMsg(true)})
 
     } catch (error) {
         return res.json({error: modifyError(error)});
