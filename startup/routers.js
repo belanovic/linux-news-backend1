@@ -7,6 +7,7 @@ const publishArticle = require('../routes/publishArticle.js');
 const proba = require('../routes/proba.js');
 const register = require('../routes/register.js');
 const login = require('../routes/login.js');
+const logout = require('../routes/logout.js');
 const newsByDate = require('../routes/newsByDate.js');
 const newsByCategory = require('../routes/newsByCategory.js');
 const scraper = require('../routes/scraper.js');
@@ -26,6 +27,7 @@ module.exports = function(app) {
     app.use('/', publishArticle);
     app.use('/', register);
     app.use('/', login);
+    app.use('/', logout);
     app.use('/', newsByDate);
     app.use('/', frontpageUpdate);
     app.use('/', scraper);
