@@ -3,7 +3,7 @@ const router = express.Router();
 const modifyError = require('modifyerror');
 
 
-router.get('/logoutt', async (req, res) => {
+router.get('/logout', async (req, res) => {
     function LogoutMsg(isSuccess) {
         this.isSuccess = isSuccess; 
        
