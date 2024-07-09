@@ -9,7 +9,7 @@
     "upload": "git add . && git commit -m 'msg' && git push"
   },
   "engines": {
-    "node": "14.15.3"
+    "node": "20.15.1"
   },
   "author": "Goran Belanovic",
   "license": "ISC",
