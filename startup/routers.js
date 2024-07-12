@@ -17,6 +17,7 @@ const lastPage = require('../routes/lastPage.js');
 const lastPageFE = require('../routes/lastPageFE.js');
 const getLatestNews = require('../routes/getLatestNews.js');
 const settings = require('../routes/settings.js');
+const weather = require('../routes/weather.js');
 
 module.exports = function(app) {
     app.use('/', allArticles);
@@ -38,5 +39,6 @@ module.exports = function(app) {
     app.use('/', newsByCategory);
     app.use('/', getLatestNews);
     app.use('/', settings);
+    app.use('/', weather);
 
 }
