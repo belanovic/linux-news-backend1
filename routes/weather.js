@@ -27,7 +27,7 @@ setInterval(async () => {
         return null
     }
     
-}, 600000 )
+}, 3600000)
 
 router.get('/weather/:location', async (req, res) => {
 

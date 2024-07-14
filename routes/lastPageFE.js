@@ -7,6 +7,8 @@ const modifyError = require('modifyerror');
 router.post('/lastPageFE', async (req, res) => {
 
     const category = req.body.category;
+    const tag = req.body.tag;
+    if(tag == 'vesti') {tag = undefined}
 
     try {
         const count = await Article
@@ -14,7 +16,15 @@ router.post('/lastPageFE', async (req, res) => {
             .countDocuments()
 
         const newsByCategory = await Article
-            .find({category: category})
+            .find(tag == undefined? 
+            {
+                category: category
+            }
+            : 
+            {
+                category: category,
+                tagsArr: {$in: [tag]}
+            })
             .sort({dateUpdated: 1})
             .limit(count % 10)
         

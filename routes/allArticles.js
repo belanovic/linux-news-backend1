@@ -11,7 +11,8 @@ router.post('/allArticles', auth, async (req, res) => {
     const title = req.body.title;
     const tag = req.body.tag;
     const regTitle = new RegExp(`${title}`, 'gi');
-    const regTag = new RegExp(`${tag}`, 'gi');  
+    const regTag = new RegExp(`${tag}`, 'gi');
+ 
 
     try {
         let count = await Article.find(category == 'allArticles'? 

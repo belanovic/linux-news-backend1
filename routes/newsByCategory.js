@@ -31,13 +31,25 @@ router.post('/category', async (req, res) => {
     const category = req.body.category;
     const pageNum = parseInt(req.body.pageNum.number);
 
+    const tag = req.body.tag;
+    if(tag == 'vesti') {tag = undefined}
+
+
     try {
         const count = await Article
             .find({category: category})
             .countDocuments()
 
         let newsByCategory = await Article
-            .find({category: category})
+            .find(tag == undefined? 
+            {
+                category: category
+            }
+            : 
+            {
+                category: category,
+                tagsArr: {$in: [tag]}
+            })
             .skip((pageNum - 1) * 10)
             .limit(10)
             .sort({dateUpdated: -1})

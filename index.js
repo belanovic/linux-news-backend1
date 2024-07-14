@@ -17,7 +17,7 @@ app.get('/n', (req, res) => {
     res.send('proba uspela')
     res.end()
 })
-
+process.env.TZ = "Europe/Belgrade";
 const hostIP = config.get('hostIP');
 const port = process.env.PORT || 4000; 
 
