@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const modifyError = require('modifyerror');
-const getWeather = require('../startup/getWeather');
 
 let weatherDataBeograd;
 let weatherDataNoviSad;
@@ -56,4 +55,21 @@ function WeatherMsg(isSuccess, result) {
     if(!isSuccess) {
         this.failureMsg = result;
     }
+}
+
+async function getWeather(location) {
+    let count = 0;
+    const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${location}`;
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'd1d887415cmsh985b8cd21e3d018p1ed1ebjsn723510c1ce85',
+            'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+        }
+    }
+        const response = await fetch(url, options);
+        const result = await response.text();
+        console.log(JSON.parse(result).location.name);
+        console.log(JSON.parse(result).current.temp_c);
+        return JSON.parse(result);  
 }
