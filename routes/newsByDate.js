@@ -5,6 +5,7 @@ const auth = require('../middleware/auth');
 const modifyError = require('modifyerror');
 
 router.post('/articlesByDate', auth, async (req, res) => {
+   
     function NewsByDateMsg(isSuccess, result) {
         this.isSuccess = isSuccess; 
         if(isSuccess) {
@@ -19,6 +20,7 @@ router.post('/articlesByDate', auth, async (req, res) => {
             .find({
                 published: true
             })
+   
         let newsByDate = articlesPublished.filter((prom) => {
             const day = prom.datePublished.getDate();
             const month = prom.datePublished.getMonth();
