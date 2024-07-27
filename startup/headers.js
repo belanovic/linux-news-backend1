@@ -21,7 +21,7 @@ module.exports = function (app) {
          // res.setHeader('Access-Control-Allow-Origin', req.get('origin')); 
         
        
-         /* console.log(req.get('host'))  
+         /* console.log(req.get('host')) ; 
          
          console.log(req.headers.host)  
    
